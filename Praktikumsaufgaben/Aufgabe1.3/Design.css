@@ -1,0 +1,138 @@
+body{
+    background-image: url(bg.png);
+    background-attachment: fixed;
+    font-family: sans-serif;
+    text-align: center;
+    padding:  0px 20px 10px;
+    margin: 0px 500px 10px;
+}
+
+nav {
+    color: black;
+    padding: 0px;
+    margin: 0px 0px 0px 1000px;
+    background-color: rgb(0, 140, 255);
+    text-align: center;
+    position: fixed;
+    top: 0;
+    float: left;
+    
+}
+nav a {
+    display: inline-block;
+    padding: 8px 20px;
+    margin: 0;
+    color: black;
+    text-decoration: none;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+nav a:hover:not(.active){
+   background-color: lightskyblue;
+}
+
+.active {
+   background-color:lightgreen;
+} 
+
+header{
+    margin-bottom: 100px;
+}
+
+main{
+    margin-top: 20px;
+}
+
+footer {
+    width: 800px;
+    padding: 20px;
+    margin: 10px;
+    background-color: darkgrey;
+}
+
+section {
+    margin: 0;
+    padding: 10px;
+    border-style:groove;
+    border-collapse: collapse;
+}
+
+
+h1, h2, h3 {
+    width: 800px;
+    color: red;
+    margin-bottom: 0; 
+    margin-top: 50px;
+}
+
+div{
+  width: 800px;
+  text-align: center;
+  margin-bottom:20px;
+}
+
+.Beschreibung {
+    background-color: lightgreen;
+    border-style: ridge;
+    padding: 10px;
+    margin-left: 10px;
+    margin-bottom: 50px;
+}
+
+
+.video, .audio{
+    margin: 20px 0px;
+}
+
+table, th, td{
+    border: 1px solid black;
+    width: 800px;
+    border-collapse: collapse;
+}
+
+th {
+    height: 50px;
+    background-color: rgb(17, 172, 17);
+}
+
+td {
+    height: 120px;
+    vertical-align: center;
+    padding: 10px;
+    text-align: left;
+    background-color: white;
+}
+
+ul{
+    list-style-type: square;
+    list-style-position:inside;
+    margin: 0;
+    
+}
+
+ol{
+    list-style-position: inside;
+}
+
+li {
+    padding: 5px;
+    margin-left: 50px;
+    text-align: left;
+}
+
+div p{
+    text-align: center;
+}
+
+#Bildbeschriftung{
+    color: blue;
+    padding: 0;
+    margin: 0;
+}
+
+#Kontaktformular{
+    text-align: left;
+}
+
