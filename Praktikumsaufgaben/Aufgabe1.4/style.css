@@ -1,0 +1,235 @@
+body{
+    background-image: url(bg.png);
+    background-attachment: fixed;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: aqua;
+    flex-shrink: 0;
+}
+
+footer{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.navbar > ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position:fixed;
+    top:0;
+    right:0;
+    overflow: hidden;
+    background-color: grey;
+    
+}
+
+.navbar li{
+    display:inline;
+    
+}
+
+.navbar a{
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.navbar a:hover:not(.active){
+    background-color: black;
+    
+}
+
+
+.active{
+    background-color: green;
+}
+
+#logo{
+    align-items: flex-start;
+} 
+
+img[alt = logo]{
+    width: 50px;
+    height: 50px;
+    transition: width 1s, height 1s;
+}
+
+img[alt = logo]:hover{
+    opacity: 0.8;
+    width:80px;
+    height:80px;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#profilbild{
+    width: 300px;
+    height:533px;
+    text-align: center;
+    margin: auto;
+}
+
+#profilbild:hover{
+    width: 400px;
+    height: 733px;
+    transition: width 2s, height 2s;
+}
+
+.main-container > *{
+    width: 800px;
+    margin: auto;
+}
+
+footer > *{
+    width: 800px;
+}
+
+.Beschreibung{
+    border: 2px groove grey;
+    margin: 20px auto;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: left;
+    background-color: skyblue;
+    color: black;
+}
+
+h1, h2, h3{
+    color:red;
+    text-shadow:  1px 1px grey;
+    text-align: left;
+}
+
+main > h1, h1 + h2{
+    text-align: center;
+}
+
+#Bildbeschriftung{
+    margin-bottom: 20px;
+}
+
+table, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+th {
+    height: 50px;
+    background-color: rgb(17, 172, 17);
+}
+
+td {
+    height: 120px;
+    vertical-align: center;
+    padding: 10px;
+    text-align: justify;
+    background-color: white;
+}
+
+h2 ~ p{
+    margin: 20px;
+}
+
+label{
+    box-sizing: border-box;
+    padding: 5px;
+    display:block;
+    text-align: left;
+}
+
+
+input[type=text], input[type=email]{
+    background-color: lightgrey;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border: none;
+    display:block;
+}
+
+
+button{
+    margin: 20px 0px;
+
+}
+
+footer > *{
+    margin: auto;
+}
+
+.Beschreibung ~ h2{
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 600px){
+
+    body{
+        background-image: url(darkbg.png); 
+        color: white;
+    }
+
+    .main-container > *{
+        width:100%;
+        flex-direction: column;
+    }
+
+    .navbar > ul{
+        top: 0;
+        left: 0;
+        right: 0;
+        display:flex;
+        justify-content: center;
+        flex-direction: row;
+
+    }
+    .navbar a{
+        flex-wrap: nowrap;
+    }
+
+    header{
+        width: 100%;
+        background-color: lightblue;
+        margin-top: 40px;
+
+    }
+
+    #Arbeitspläne{
+        color: black;
+    }
+
+   
+    
+}
+
+@media screen and (min-width:600px) and (max-width:1024px){
+    .main-container > *{
+        width:80%;
+        flex-direction: column;
+    }
+
+    header{
+        width: 100%;
+        margin-top: 40px;
+
+    }
+
+}
