@@ -34,10 +34,14 @@ button {
     background-color: lightgrey;
 }
 
-a {
+.button a {
     text-decoration: none;
     color: black;
     margin: auto;
+    background-color: grey;
+    padding: 10px 20px;
+    border: 1px solid black;
+    margin-top: 10px;
 }
 
 #behaelterinhalte{
@@ -51,3 +55,4 @@ a {
     margin: auto;
     margin-top: 20px;
 }
+
