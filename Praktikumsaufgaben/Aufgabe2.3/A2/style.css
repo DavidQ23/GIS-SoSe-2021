@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+
+
+div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    background-color: green;
+    width: 40%;
+    padding: 10px;
+}
+
+.divContainer{
+    background-color: inherit;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+    display: flex; 
+}
+
+button {
+    margin: auto;
+    margin-top: 5px;
+    padding: 10px 30px;
+    background-color: lightgrey;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    margin: auto;
+}
+
+#behaelterinhalte{
+    background-color: orange;
+    margin: auto;
+    padding: 10px;
+    width: 40%;
+}
+
+#startseiteButton {
+    margin: auto;
+    margin-top: 20px;
+}
