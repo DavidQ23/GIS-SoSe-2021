@@ -112,4 +112,4 @@ var Aufgabe2_4_1;
         }
     }*/
 })(Aufgabe2_4_1 || (Aufgabe2_4_1 = {}));
-//# sourceMappingURL=behaelter.js.map
+//# sourceMappingURL=seite.js.map
