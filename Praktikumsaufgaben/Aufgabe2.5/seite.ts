@@ -10,7 +10,7 @@ namespace Aufgabe2_5 {
         seitenaufbau(auswahlmöglichkeiten);
     }
 
-    communicate("data.json");
+    communicate("https://davidq23.github.io/GIS-SoSe-2021/Praktikumsaufgaben/Aufgabe2.5/data.json");
 
     function Behaelterauswahl(_trinkbehaelter: Getraenkewahl): HTMLElement {
         let div: HTMLDivElement = document.createElement("div");
