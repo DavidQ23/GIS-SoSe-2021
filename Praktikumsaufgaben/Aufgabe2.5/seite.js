@@ -10,7 +10,7 @@ var Aufgabe2_5;
         let auswahlmöglichkeiten = await antwort.json();
         seitenaufbau(auswahlmöglichkeiten);
     }
-    communicate("data.json");
+    communicate("https://davidq23.github.io/GIS-SoSe-2021/Praktikumsaufgaben/Aufgabe2.5/data.json");
     function Behaelterauswahl(_trinkbehaelter) {
         let div = document.createElement("div");
         div.style.textAlign = "center";
