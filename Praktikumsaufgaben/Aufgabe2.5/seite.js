@@ -105,32 +105,23 @@ var Aufgabe2_5;
         div.appendChild(image2);
         div.appendChild(image3);
         bisherigeAuswahl.appendChild(div);
+        async function serverausgabe(_url) {
+            let query = new URLSearchParams(localStorage);
+            _url = _url + "?" + query.toString();
+            let antwort = await fetch(_url);
+            let ausgabe = await antwort.json();
+            if (ausgabe.message != null) {
+                let ausgabeAnzeigen = document.getElementById("serverausgabe");
+                ausgabeAnzeigen.textContent = ausgabe.message;
+                ausgabeAnzeigen.classList.add("message");
+            }
+            else {
+                let ausgabeAnzeigen = document.getElementById("serverausgabe");
+                ausgabeAnzeigen.textContent = ausgabe.error;
+                ausgabeAnzeigen.classList.add("error");
+            }
+        }
+        serverausgabe("https://gis-communication.herokuapp.com");
     }
-    async function serverausgabe(_url) {
-        let query = new URLSearchParams(localStorage);
-        _url = _url + "?" + query.toString();
-        let antwort = await fetch(_url);
-        let ausgabe = await antwort.json();
-        if (ausgabe.message != null) {
-            let ausgabeAnzeigen = document.getElementById("serverausgabe");
-            ausgabeAnzeigen.textContent = ausgabe.message;
-            ausgabeAnzeigen.classList.add("message");
-        }
-        else {
-            let ausgabeAnzeigen = document.getElementById("serverausgabe");
-            ausgabeAnzeigen.textContent = ausgabe.error;
-            ausgabeAnzeigen.classList.add("error");
-        }
-        /* let p: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("serverausgabe");
-        p.innerText = ausgabe; */
-        /* if (ausgabe.match("message")) {
-            //alternativ : p.style.color = "blue";
-            p.classList.add("message");
-        }
-        else if (ausgabe.match("error")) {
-            p.classList.add("error");
-        } */
-    }
-    serverausgabe("https://gis-communication.herokuapp.com");
 })(Aufgabe2_5 || (Aufgabe2_5 = {}));
 //# sourceMappingURL=seite.js.map

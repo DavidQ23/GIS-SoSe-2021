@@ -134,42 +134,28 @@ namespace Aufgabe2_5 {
         div.appendChild(image3);
 
         bisherigeAuswahl.appendChild(div);
+        
+        async function serverausgabe(_url: RequestInfo): Promise<void> {
+            let query: URLSearchParams = new URLSearchParams(localStorage);
+            _url = _url + "?" + query.toString();
+            let antwort: Response = await fetch(_url);
+            
+            let ausgabe: any = await antwort.json();
+            if (ausgabe.message != null) {
+                let ausgabeAnzeigen: HTMLParagraphElement = <HTMLDivElement> document.getElementById("serverausgabe");
+                ausgabeAnzeigen.textContent = ausgabe.message;
+                ausgabeAnzeigen.classList.add("message");
+            }
+            else {
+                let ausgabeAnzeigen: HTMLParagraphElement = <HTMLDivElement> document.getElementById("serverausgabe");
+                ausgabeAnzeigen.textContent = ausgabe.error;
+                ausgabeAnzeigen.classList.add("error");
+            }
+    
+        }
+        serverausgabe("https://gis-communication.herokuapp.com");
     }
 
 
-    async function serverausgabe(_url: RequestInfo): Promise<void> {
-        let query: URLSearchParams = new URLSearchParams(localStorage);
-        _url = _url + "?" + query.toString();
-        let antwort: Response = await fetch(_url);
-        
-        let ausgabe: any = await antwort.json();
-        if (ausgabe.message != null) {
-            let ausgabeAnzeigen: HTMLParagraphElement = <HTMLDivElement> document.getElementById("serverausgabe");
-            ausgabeAnzeigen.textContent = ausgabe.message;
-            ausgabeAnzeigen.classList.add("message");
-        }
-        else {
-            let ausgabeAnzeigen: HTMLParagraphElement = <HTMLDivElement> document.getElementById("serverausgabe");
-            ausgabeAnzeigen.textContent = ausgabe.error;
-            ausgabeAnzeigen.classList.add("error");
-        }
-       
-       
-       
-       
-        /* let p: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("serverausgabe");
-        p.innerText = ausgabe; */
-
-
-
-        /* if (ausgabe.match("message")) {
-            //alternativ : p.style.color = "blue";
-            p.classList.add("message");
-        }
-        else if (ausgabe.match("error")) {
-            p.classList.add("error");
-        } */
-        
-    }
-    serverausgabe("https://gis-communication.herokuapp.com");
+    
 }
