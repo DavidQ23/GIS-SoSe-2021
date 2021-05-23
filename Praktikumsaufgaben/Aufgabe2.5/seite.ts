@@ -24,7 +24,6 @@ namespace Aufgabe2_5 {
 
 
         let button: HTMLButtonElement = document.createElement("button");
-        //button.dataset.form = _trinkbehaelter.form;
         button.classList.add("auswahlButton");
         button.innerText = "Auswahl bestätigen";
         button.addEventListener("click", Zwischenspeichern);

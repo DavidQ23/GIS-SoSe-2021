@@ -19,7 +19,6 @@ var Aufgabe2_5;
         image.src = _trinkbehaelter.bild;
         div.appendChild(image);
         let button = document.createElement("button");
-        //button.dataset.form = _trinkbehaelter.form;
         button.classList.add("auswahlButton");
         button.innerText = "Auswahl bestätigen";
         button.addEventListener("click", Zwischenspeichern);
