@@ -1,0 +1,16 @@
+#Formular label, input {
+    display:block;
+    text-align: center;
+    margin: auto;
+}
+
+body{
+    margin: auto;
+    padding: auto;
+    text-align: center;
+}
+
+div {
+    margin: auto;
+    text-align: center;
+}
