@@ -1,0 +1,21 @@
+{
+  "name": "gis-sose-2021",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "node Praktikumsaufgaben/Aufgabe3.1/Server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidQ23/GIS-SoSe-2021.git"
+  },
+  "author": "david",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidQ23/GIS-SoSe-2021/issues"
+  },
+  "homepage": "https://github.com/DavidQ23/GIS-SoSe-2021#readme"
+}
