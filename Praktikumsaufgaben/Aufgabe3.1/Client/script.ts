@@ -19,5 +19,4 @@ namespace P_3_1Server {
     }
     let button: HTMLButtonElement = <HTMLButtonElement>document.getElementById("SubmitButton");
     button.addEventListener("click", handleRequest);
-
 }
