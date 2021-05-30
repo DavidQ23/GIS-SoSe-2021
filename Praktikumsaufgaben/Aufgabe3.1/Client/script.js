@@ -1,6 +1,6 @@
 "use strict";
-var Aufgabe3_1;
-(function (Aufgabe3_1) {
+var P_3_1Server;
+(function (P_3_1Server) {
     async function handleRequest() {
         let formData = new FormData(document.forms[0]); // Auslesen der eingebenen Daten des ersten Formulars im Dokument
         let url = "https://davidqgissose2021.herokuapp.com/";
@@ -18,5 +18,5 @@ var Aufgabe3_1;
     }
     let button = document.getElementById("SubmitButton");
     button.addEventListener("click", handleRequest);
-})(Aufgabe3_1 || (Aufgabe3_1 = {}));
+})(P_3_1Server || (P_3_1Server = {}));
 //# sourceMappingURL=script.js.map

@@ -1,5 +1,4 @@
-
-namespace Aufgabe3_1 {
+namespace P_3_1Server {
     async function handleRequest(): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);   // Auslesen der eingebenen Daten des ersten Formulars im Dokument
         let url: string = "https://davidqgissose2021.herokuapp.com/";
@@ -16,7 +15,9 @@ namespace Aufgabe3_1 {
         let response: Response = await fetch(url);                  //Auf die URL warten zum Abschicken zum Server
         let answer: string = await response.text();                 //Warten auf Antwort des Servers in Form eines Strings
         console.log(answer);                                        //Konsolenausgabe der Serverantwort
+
     }
     let button: HTMLButtonElement = <HTMLButtonElement>document.getElementById("SubmitButton");
     button.addEventListener("click", handleRequest);
+
 }

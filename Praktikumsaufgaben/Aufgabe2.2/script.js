@@ -34,6 +34,9 @@ var Aufgabe22_1;
     // Aufgabe c)
     // 1.
     class Student {
+        name;
+        age;
+        matrikelnummer;
         constructor(_name, _age, _matrikelnummer) {
             this.name = _name;
             this.age = _age;
@@ -184,6 +187,8 @@ var Aufgabe22_3_Zeichnen;
     let context = canvas.getContext("2d");
     //Aufgabe 3 b) - e)
     class Rechteck {
+        breite;
+        hoehe;
         constructor() {
             this.breite = Math.floor(Math.random() * 200);
             this.hoehe = Math.floor(Math.random() * 200);

@@ -5,6 +5,8 @@ var Aufgabe2_3_1;
     let createRectangle = document.getElementById("createRectangle");
     let clearAllRectangle = document.getElementById("clearAllRectangle");
     class Rechteck {
+        breite;
+        hoehe;
         constructor() {
             this.breite = Math.floor(Math.random() * 100);
             this.hoehe = Math.floor(Math.random() * 100);
