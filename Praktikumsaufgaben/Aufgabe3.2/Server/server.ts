@@ -38,7 +38,7 @@ export namespace Aufgabe3_2 {
             }
         }
 
-        _response.write(_request.url);
+        //_response.write(_request.url);
         _response.end();
     }
 

@@ -5,6 +5,13 @@ namespace P_3_2 {
         straße: string;
         straßennummer: number;
     }
+
+    let button1: HTMLButtonElement = <HTMLButtonElement>document.getElementById("SubmitButtonHtml");
+    button1.addEventListener("click", sendDataHtml);
+    let button2: HTMLButtonElement = <HTMLButtonElement>document.getElementById("SubmitButtonJson");
+    button2.addEventListener("click", sendDataJson);
+    let serverausgabe: HTMLDivElement = <HTMLDivElement>document.getElementById("serverausgabe");
+
     
     async function sendDataHtml(): Promise<void> {
 
@@ -26,7 +33,6 @@ namespace P_3_2 {
 
         let response: Response = await fetch(url);                  //Auf die URL warten zum Abschicken zum Server
         let answer: string = await response.text();                 //Warten auf Antwort des Servers in Form eines Strings
-        let serverausgabe: HTMLDivElement = <HTMLDivElement>document.getElementById("serverausgabe");
         serverausgabe.innerHTML = answer;
 
     }
@@ -41,12 +47,11 @@ namespace P_3_2 {
 
 
         let response: Response = await fetch(url);                  //Auf die URL warten zum Abschicken zum Server
-        let answer: FormulaData = await response.json();                 //Warten auf Antwort des Servers in Form eines Strings
+        let answer: FormulaData = await response.json();            //Warten auf Antwort des Servers in Form eines Strings
         console.log(answer);
+
+        serverausgabe.innerHTML = JSON.stringify(answer);
     }
 
-    let button1: HTMLButtonElement = <HTMLButtonElement>document.getElementById("SubmitButtonHtml");
-    button1.addEventListener("click", sendDataHtml);
-    let button2: HTMLButtonElement = <HTMLButtonElement>document.getElementById("SubmitButtonJson");
-    button2.addEventListener("click", sendDataJson);
+    
 }

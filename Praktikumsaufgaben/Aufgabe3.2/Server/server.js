@@ -33,7 +33,7 @@ var Aufgabe3_2;
                 _response.write(jsonString);
             }
         }
-        _response.write(_request.url);
+        //_response.write(_request.url);
         _response.end();
     }
 })(Aufgabe3_2 = exports.Aufgabe3_2 || (exports.Aufgabe3_2 = {}));
