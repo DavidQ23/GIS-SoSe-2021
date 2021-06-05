@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "^15.12.1"
+  },
   "scripts": {
-    "start": "node Praktikumsaufgaben/Aufgabe3.1/Server/server.js"
+    "start": "node Praktikumsaufgaben/Aufgabe3.2/Server/server.js"
   },
   "repository": {
     "type": "git",

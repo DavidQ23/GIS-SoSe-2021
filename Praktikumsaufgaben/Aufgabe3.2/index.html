@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="Client/script.js" defer></script>
+</head>
+
+<body>
+    <h3>Persönliche Daten</h3>
+    <form>
+        <label for="vorname">Vorname</label>
+        <input type="text" name="vorname" id="vorname">
+        <label for="nachname">Nachname</label>
+        <input type="text" name="nachname" id="nachname">
+        <label for="straße">Straße</label>
+        <input type="text" name="straße" id="straße">
+        <label for="straßennummer">Straßennummer</label>
+        <input type="number" name="straßennummer" id="straßennummer">
+        <button type="button" id="SubmitButtonHtml">Abschicken an /Html</button>
+        <button type="button" id="SubmitButtonJson">Abschicken an /Json</button>
+    </form>
+
+    <div id="serverausgabe"></div>
+
+</body>
+
+</html>
