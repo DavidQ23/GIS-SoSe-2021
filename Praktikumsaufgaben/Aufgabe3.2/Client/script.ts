@@ -50,7 +50,7 @@ namespace P_3_2 {
         let answer: FormulaData = await response.json();            //Warten auf Antwort des Servers in Form eines Strings
         console.log(answer);
 
-        serverausgabe.innerHTML = JSON.stringify(answer);
+        //serverausgabe.innerHTML = JSON.stringify(answer);
     }
 
     

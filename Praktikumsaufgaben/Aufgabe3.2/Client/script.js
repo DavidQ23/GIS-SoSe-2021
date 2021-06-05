@@ -30,7 +30,7 @@ var P_3_2;
         let response = await fetch(url); //Auf die URL warten zum Abschicken zum Server
         let answer = await response.json(); //Warten auf Antwort des Servers in Form eines Strings
         console.log(answer);
-        serverausgabe.innerHTML = JSON.stringify(answer);
+        //serverausgabe.innerHTML = JSON.stringify(answer);
     }
 })(P_3_2 || (P_3_2 = {}));
 //# sourceMappingURL=script.js.map
