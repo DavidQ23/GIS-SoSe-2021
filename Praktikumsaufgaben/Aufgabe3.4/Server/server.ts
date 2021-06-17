@@ -1,5 +1,5 @@
 import * as Http from "http";
-//import * as _url from "url";
+import * as Url from "url";
 import * as Mongo from "mongodb";
 
 
@@ -10,7 +10,7 @@ export namespace Aufgabe3_4 {
         name: string;
         registration: number;
     }
-    
+
     console.log("Starting server");
     let port: number = Number(process.env.PORT);
     if (!port)
@@ -24,23 +24,21 @@ export namespace Aufgabe3_4 {
     connectToDB("mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 
     async function connectToDB(_url: string): Promise<void> {
-        let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true };
+        let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
+        retrieveStudents();
 
-        let students: Mongo.Collection = mongoClient.db("Test").collection("Students");
-        let cursor: Mongo.Cursor = students.find();
-        let result: Student[] = await cursor.toArray();
-        
+        async function retrieveStudents(): Promise<void> {
+            let students: Mongo.Collection = mongoClient.db("Test").collection("Students");
+            let cursor: Mongo.Cursor = students.find();
+            let result: Student[] = await cursor.toArray();
+            console.log(result);
+        }
 
-        let s: Student = {firstname: "Benjamin", name: "Franklin", registration: 141131};
-        students.insertOne(s);
-        console.log(result);
+
     }
-
-    
-    
 
     function handleListen(): void {
         console.log("Listening");
@@ -53,21 +51,13 @@ export namespace Aufgabe3_4 {
         _response.setHeader("Access-Control-Allow-Origin", "*");
 
 
-        /* if (_request.url) {
-            let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);     //Die in der Request enthaltene URL wird in ein assoziatives Array geparsed/umformatiert
-            if (url.pathname == "/html") {
-                for (let key in url.query) {
-                    _response.write(key + ":" + url.query[key] + "<br>");
-                }
-            }
-            else if (url.pathname == "/json") {
-                let jsonString: string = JSON.stringify(url.query);
-                console.log(jsonString);
-                _response.write(jsonString);
-            }
-        } */
 
-        //_response.write(_request.url);
+        let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);     //Die in der Request enthaltene URL wird in ein assoziatives Array geparsed/umformatiert
+        if (_request.url) {
+        let jsonString: string = JSON.stringify(url.query);
+        console.log(jsonString);
+        _response.write(jsonString);
+        }
         _response.end();
     }
 

@@ -1,0 +1,17 @@
+body {
+    text-align: center;
+    
+}
+
+form {
+    margin: auto;
+    display: block;
+}
+
+form label, input{
+    display: block;
+}
+
+input {
+    display: block;
+}

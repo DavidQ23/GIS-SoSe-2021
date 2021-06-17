@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Aufgabe3_4 = void 0;
 const Http = require("http");
-//import * as _url from "url";
+const Url = require("url");
 const Mongo = require("mongodb");
 var Aufgabe3_4;
 (function (Aufgabe3_4) {
@@ -19,12 +19,13 @@ var Aufgabe3_4;
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        let students = mongoClient.db("Test").collection("Students");
-        let cursor = students.find();
-        let result = await cursor.toArray();
-        let s = { firstname: "Benjamin", name: "Franklin", registration: 141131 };
-        students.insertOne(s);
-        console.log(result);
+        retrieveStudents();
+        async function retrieveStudents() {
+            let students = mongoClient.db("Test").collection("Students");
+            let cursor = students.find();
+            let result = await cursor.toArray();
+            console.log(result);
+        }
     }
     function handleListen() {
         console.log("Listening");
@@ -33,20 +34,12 @@ var Aufgabe3_4;
         console.log("I hear voices!");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
-        /* if (_request.url) {
-            let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);     //Die in der Request enthaltene URL wird in ein assoziatives Array geparsed/umformatiert
-            if (url.pathname == "/html") {
-                for (let key in url.query) {
-                    _response.write(key + ":" + url.query[key] + "<br>");
-                }
-            }
-            else if (url.pathname == "/json") {
-                let jsonString: string = JSON.stringify(url.query);
-                console.log(jsonString);
-                _response.write(jsonString);
-            }
-        } */
-        //_response.write(_request.url);
+        let url = Url.parse(_request.url, true); //Die in der Request enthaltene URL wird in ein assoziatives Array geparsed/umformatiert
+        if (_request.url) {
+            let jsonString = JSON.stringify(url.query);
+            console.log(jsonString);
+            _response.write(jsonString);
+        }
         _response.end();
     }
 })(Aufgabe3_4 = exports.Aufgabe3_4 || (exports.Aufgabe3_4 = {}));
