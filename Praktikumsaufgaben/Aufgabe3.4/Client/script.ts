@@ -1,4 +1,4 @@
-export namespace Aufgabe3_4 {
+namespace Aufgabe3_4 {
 
     interface Student {
         firstname: string;
