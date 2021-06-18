@@ -6,7 +6,9 @@ import * as Mongo from "mongodb";
 export namespace Aufgabe3_4 {
 
     interface Student {
-        [type: string]: string | string[];
+        firstname: string;
+        name: string;
+        studypath: string;
     }
 
     let students: Mongo.Collection;
@@ -18,7 +20,7 @@ export namespace Aufgabe3_4 {
         port = 8100;
 
     startServer(port);
-    connectToDB(mongoURL);
+    //connectToDB(mongoURL);
 
     function startServer(_port: number): void {
         let server: Http.Server = Http.createServer();
@@ -27,53 +29,42 @@ export namespace Aufgabe3_4 {
         server.listen(port);
     }
 
-
-    async function connectToDB(_url: string): Promise<void> {
-        let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
-
-        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
-        await mongoClient.connect();
-        students = mongoClient.db("Test").collection("Students");
-        console.log("Database connected", students != undefined);
-        
-
-        
-        /* retrieveStudents();
-
-        async function retrieveStudents(): Promise<void> {
-            let students: Mongo.Collection = mongoClient.db("Test").collection("Students");
-            let cursor: Mongo.Cursor = students.find();
-            let result: Student[] = await cursor.toArray();
-            console.log(result);
-        } */
-
-
-    }
-
     function handleListen(): void {
         console.log("Listening");
     }
 
-    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
+    async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
         console.log("I hear voices!");
 
         _response.setHeader("content-type", "application/json; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
 
-        
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);     //Die in der Request enthaltene URL wird in ein assoziatives Array geparsed/umformatiert
             let jsonString: string = JSON.stringify(url.query);
             console.log(jsonString);
-            _response.write(url.query);
-            saveInDB(url.query);
+
+            if (url.pathname == "/saveData") {
+                let student: Student = JSON.parse(jsonString);                      //Eingebene Daten als String werden wieder in ein JSON OBjekt umgewandelt
+                let mongoResponse: string = await saveInDB(mongoURL, student);
+                _response.write(mongoResponse);
+                
+            }
+
         }
-        
+
         _response.end();
     }
 
-    function saveInDB(_student: Student): void {
-        students.insert(_student);
+    async function saveInDB(_url: string, _student: Student): Promise<string> {
+        let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+        await mongoClient.connect();
+        students = mongoClient.db("Test").collection("Students");
+        console.log("Database connected", students != undefined);
+        students.insertOne(_student);
+        let response: string = "Daten erfolgreich in Daten gespeichert";
+        return response;
     }
 
 }

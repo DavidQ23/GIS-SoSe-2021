@@ -16,7 +16,7 @@ namespace Aufgabe3_4 {
     async function SaveInDB(): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);   // Auslesen der eingebenen Daten des ersten Formulars im Dokument
 
-        let url: string = "https://davidqgissose2021.herokuapp.com";
+        let url: string = "https://davidqgissose2021.herokuapp.com/saveData";
         let query: URLSearchParams = new URLSearchParams(<any>formData); 
         url = url + "?" + query.toString();                         
         console.log(url); 

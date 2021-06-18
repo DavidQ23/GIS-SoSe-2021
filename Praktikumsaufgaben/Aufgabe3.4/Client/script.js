@@ -8,7 +8,7 @@ var Aufgabe3_4;
     let serverausgabe = document.getElementById("Serverantwort");
     async function SaveInDB() {
         let formData = new FormData(document.forms[0]); // Auslesen der eingebenen Daten des ersten Formulars im Dokument
-        let url = "https://davidqgissose2021.herokuapp.com";
+        let url = "https://davidqgissose2021.herokuapp.com/saveData";
         let query = new URLSearchParams(formData);
         url = url + "?" + query.toString();
         console.log(url);

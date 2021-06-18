@@ -13,32 +13,17 @@ var Aufgabe3_4;
     if (!port)
         port = 8100;
     startServer(port);
-    connectToDB(mongoURL);
+    //connectToDB(mongoURL);
     function startServer(_port) {
         let server = Http.createServer();
         server.addListener("request", handleRequest);
         server.addListener("listening", handleListen);
         server.listen(port);
     }
-    async function connectToDB(_url) {
-        let options = { useNewUrlParser: true, useUnifiedTopology: true };
-        let mongoClient = new Mongo.MongoClient(_url, options);
-        await mongoClient.connect();
-        students = mongoClient.db("Test").collection("Students");
-        console.log("Database connected", students != undefined);
-        /* retrieveStudents();
-
-        async function retrieveStudents(): Promise<void> {
-            let students: Mongo.Collection = mongoClient.db("Test").collection("Students");
-            let cursor: Mongo.Cursor = students.find();
-            let result: Student[] = await cursor.toArray();
-            console.log(result);
-        } */
-    }
     function handleListen() {
         console.log("Listening");
     }
-    function handleRequest(_request, _response) {
+    async function handleRequest(_request, _response) {
         console.log("I hear voices!");
         _response.setHeader("content-type", "application/json; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
@@ -46,13 +31,23 @@ var Aufgabe3_4;
             let url = Url.parse(_request.url, true); //Die in der Request enthaltene URL wird in ein assoziatives Array geparsed/umformatiert
             let jsonString = JSON.stringify(url.query);
             console.log(jsonString);
-            _response.write(url.query);
-            saveInDB(url.query);
+            if (url.pathname == "/saveData") {
+                let student = JSON.parse(jsonString); //Eingebene Daten als String werden wieder in ein JSON OBjekt umgewandelt
+                let mongoResponse = await saveInDB(mongoURL, student);
+                _response.write(mongoResponse);
+            }
         }
         _response.end();
     }
-    function saveInDB(_student) {
-        students.insert(_student);
+    async function saveInDB(_url, _student) {
+        let options = { useNewUrlParser: true, useUnifiedTopology: true };
+        let mongoClient = new Mongo.MongoClient(_url, options);
+        await mongoClient.connect();
+        students = mongoClient.db("Test").collection("Students");
+        console.log("Database connected", students != undefined);
+        students.insertOne(_student);
+        let response = "Daten erfolgreich in Daten gespeichert";
+        return response;
     }
 })(Aufgabe3_4 = exports.Aufgabe3_4 || (exports.Aufgabe3_4 = {}));
 //# sourceMappingURL=server.js.map
