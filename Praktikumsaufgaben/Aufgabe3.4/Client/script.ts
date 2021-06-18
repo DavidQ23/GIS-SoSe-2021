@@ -3,7 +3,7 @@ namespace Aufgabe3_4 {
     interface Student {
         firstname: string;
         name: string;
-        registration: number;
+        registration: string;
     }
 
     let button1: HTMLButtonElement = <HTMLButtonElement>document.getElementById("SaveInDB");
