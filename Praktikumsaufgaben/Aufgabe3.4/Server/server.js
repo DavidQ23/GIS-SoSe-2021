@@ -30,11 +30,15 @@ var Aufgabe3_4;
         if (_request.url) {
             let url = Url.parse(_request.url, true); //Die in der Request enthaltene URL wird in ein assoziatives Array geparsed/umformatiert
             let jsonString = JSON.stringify(url.query);
-            console.log(jsonString);
+            console.log(jsonString); //Konsolenfeedback, dass die Daten an Server geschickt wurden
             if (url.pathname == "/saveData") {
                 let student = JSON.parse(jsonString); //Eingebene Daten als String werden wieder in ein JSON OBjekt umgewandelt
                 let mongoResponse = await saveInDB(mongoURL, student); //Auf Antwort der Funktion saveInDB warten
-                _response.write(mongoResponse); //erhaltene Antwort an Client schicken
+                _response.write(mongoResponse); //erhaltene Antwort an Client schicken               
+            }
+            else if (url.pathname == "/printData") {
+                let studentlist = await printallStudents(mongoURL); //Auf Antwort der Funtion printallStudents warten, die ein Array an Studierenden ist
+                _response.write(JSON.stringify(studentlist)); //Serverantwort = ein String der Arrayliste
             }
         }
         _response.end();
@@ -48,6 +52,16 @@ var Aufgabe3_4;
         students.insertOne(_student); //Student, der als Parameter beigegeben wurde, in ausgewählter Collection speichern
         let response = "Daten erfolgreich in Datenbank gespeichert"; //Rückgabewert der Funktion
         return response;
+    }
+    async function printallStudents(_url) {
+        let options = { useNewUrlParser: true, useUnifiedTopology: true };
+        let mongoClient = new Mongo.MongoClient(_url, options);
+        await mongoClient.connect();
+        students = mongoClient.db("Test").collection("Students");
+        console.log("Database connected", students != undefined);
+        let cursor = students.find(); //Alle Studenten in der Collection auslesen 
+        let result = await cursor.toArray(); //Alle gefundenen Einträge in einen Array umwandeln
+        return result; //Rückgabewert ist ein Array aus Studierenden
     }
 })(Aufgabe3_4 = exports.Aufgabe3_4 || (exports.Aufgabe3_4 = {}));
 //# sourceMappingURL=server.js.map

@@ -18,13 +18,14 @@ var Aufgabe3_4;
     }
     async function ServerResponse() {
         let formData = new FormData(document.forms[0]); // Auslesen der eingebenen Daten des ersten Formulars im Dokument
-        let url = "https://davidqgissose2021.herokuapp.com";
+        let url = "https://davidqgissose2021.herokuapp.com/printData";
         let query = new URLSearchParams(formData);
         url = url + "?" + query.toString();
         console.log(url);
         let response = await fetch(url);
         let answer = await response.text();
         console.log(answer);
+        serverausgabe.innerHTML = answer;
     }
 })(Aufgabe3_4 || (Aufgabe3_4 = {}));
 //# sourceMappingURL=script.js.map
