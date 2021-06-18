@@ -10,22 +10,26 @@ var Aufgabe3_4;
     let port = Number(process.env.PORT);
     if (!port)
         port = 8100;
-    let server = Http.createServer();
-    server.addListener("request", handleRequest);
-    server.addListener("listening", handleListen);
-    server.listen(port);
+    startServer(port);
     connectToDB("mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+    function startServer(_port) {
+        let server = Http.createServer();
+        server.addListener("request", handleRequest);
+        server.addListener("listening", handleListen);
+        server.listen(port);
+    }
     async function connectToDB(_url) {
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        retrieveStudents();
-        async function retrieveStudents() {
-            let students = mongoClient.db("Test").collection("Students");
-            let cursor = students.find();
-            let result = await cursor.toArray();
+        /* retrieveStudents();
+
+        async function retrieveStudents(): Promise<void> {
+            let students: Mongo.Collection = mongoClient.db("Test").collection("Students");
+            let cursor: Mongo.Cursor = students.find();
+            let result: Student[] = await cursor.toArray();
             console.log(result);
-        }
+        } */
     }
     function handleListen() {
         console.log("Listening");
@@ -40,7 +44,11 @@ var Aufgabe3_4;
             console.log(jsonString);
             _response.write(jsonString);
         }
+        saveInDB(url.query);
         _response.end();
+    }
+    function saveInDB(_student) {
+        students.insert(_student);
     }
 })(Aufgabe3_4 = exports.Aufgabe3_4 || (exports.Aufgabe3_4 = {}));
 //# sourceMappingURL=server.js.map
