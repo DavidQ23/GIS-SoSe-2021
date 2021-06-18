@@ -40,7 +40,7 @@ var Aufgabe3_4;
     }
     function handleRequest(_request, _response) {
         console.log("I hear voices!");
-        _response.setHeader("content-type", "text/html; charset=utf-8");
+        _response.setHeader("content-type", "application/json; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
             let url = Url.parse(_request.url, true); //Die in der Request enthaltene URL wird in ein assoziatives Array geparsed/umformatiert
