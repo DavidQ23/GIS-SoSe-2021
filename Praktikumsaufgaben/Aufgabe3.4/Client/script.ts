@@ -21,7 +21,7 @@ namespace Aufgabe3_4 {
         url = url + "?" + query.toString();                         
         console.log(url); 
         let response: Response = await fetch(url);
-        let answer: Promise<string> = response.text(); 
+        let answer: string = await response.text(); 
         console.log(answer);
     }
 

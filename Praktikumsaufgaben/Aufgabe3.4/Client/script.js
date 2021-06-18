@@ -13,7 +13,7 @@ var Aufgabe3_4;
         url = url + "?" + query.toString();
         console.log(url);
         let response = await fetch(url);
-        let answer = response.text();
+        let answer = await response.text();
         console.log(answer);
     }
     async function ServerResponse() {
