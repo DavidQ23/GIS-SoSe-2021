@@ -34,7 +34,7 @@ namespace Aufgabe3_4 {
         console.log(url);                                           
 
         let response: Response = await fetch(url);                  
-        let answer: Student = await response.json();                 
-        serverausgabe.innerHTML = JSON.stringify(answer);
+        let answer: string = await response.text();                 
+        console.log(answer);
     }
 }

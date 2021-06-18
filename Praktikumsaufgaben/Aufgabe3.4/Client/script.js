@@ -23,8 +23,8 @@ var Aufgabe3_4;
         url = url + "?" + query.toString();
         console.log(url);
         let response = await fetch(url);
-        let answer = await response.json();
-        serverausgabe.innerHTML = JSON.stringify(answer);
+        let answer = await response.text();
+        console.log(answer);
     }
 })(Aufgabe3_4 || (Aufgabe3_4 = {}));
 //# sourceMappingURL=script.js.map

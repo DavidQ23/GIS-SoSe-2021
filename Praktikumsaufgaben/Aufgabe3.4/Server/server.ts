@@ -46,8 +46,8 @@ export namespace Aufgabe3_4 {
 
             if (url.pathname == "/saveData") {
                 let student: Student = JSON.parse(jsonString);                      //Eingebene Daten als String werden wieder in ein JSON OBjekt umgewandelt
-                let mongoResponse: string = await saveInDB(mongoURL, student);
-                _response.write(mongoResponse);
+                let mongoResponse: string = await saveInDB(mongoURL, student);      //Auf Antwort der Funktion saveInDB warten
+                _response.write(mongoResponse);                                     //erhaltene Antwort an Client schicken
                 
             }
 
@@ -57,13 +57,13 @@ export namespace Aufgabe3_4 {
     }
 
     async function saveInDB(_url: string, _student: Student): Promise<string> {
-        let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
-        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
-        await mongoClient.connect();
-        students = mongoClient.db("Test").collection("Students");
-        console.log("Database connected", students != undefined);
-        students.insertOne(_student);
-        let response: string = "Daten erfolgreich in Daten gespeichert";
+        let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };    
+        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);                      //Datenbank wird in Variable angelegt
+        await mongoClient.connect();                                                                    //mit angelegter Datanbank verbinden
+        students = mongoClient.db("Test").collection("Students");                                       //Eine Collection einer Datanbank in Variable legen
+        console.log("Database connected", students != undefined);                                       //Feedback für Konsole
+        students.insertOne(_student);                                                                   //Student, der als Parameter beigegeben wurde, in ausgewählter Collection speichern
+        let response: string = "Daten erfolgreich in Datenbank gespeichert";                            //Rückgabewert der Funktion
         return response;
     }
 
