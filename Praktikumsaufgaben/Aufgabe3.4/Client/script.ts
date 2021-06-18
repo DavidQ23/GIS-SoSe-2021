@@ -20,8 +20,9 @@ namespace Aufgabe3_4 {
         let query: URLSearchParams = new URLSearchParams(<any>formData); 
         url = url + "?" + query.toString();                         
         console.log(url); 
-        let response: Response = await fetch(url); 
-        console.log(response);
+        let response: Response = await fetch(url);
+        let answer: Promise<string> = response.text(); 
+        console.log(answer);
     }
 
     async function ServerResponse(): Promise<void> {

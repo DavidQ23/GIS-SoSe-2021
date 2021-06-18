@@ -13,7 +13,8 @@ var Aufgabe3_4;
         url = url + "?" + query.toString();
         console.log(url);
         let response = await fetch(url);
-        console.log(response);
+        let answer = response.text();
+        console.log(answer);
     }
     async function ServerResponse() {
         let formData = new FormData(document.forms[0]); // Auslesen der eingebenen Daten des ersten Formulars im Dokument
