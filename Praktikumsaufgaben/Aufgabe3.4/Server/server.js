@@ -6,12 +6,14 @@ const Url = require("url");
 const Mongo = require("mongodb");
 var Aufgabe3_4;
 (function (Aufgabe3_4) {
+    let students;
+    let mongoURL = "mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
         port = 8100;
     startServer(port);
-    connectToDB("mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+    connectToDB(mongoURL);
     function startServer(_port) {
         let server = Http.createServer();
         server.addListener("request", handleRequest);
@@ -22,6 +24,8 @@ var Aufgabe3_4;
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
+        console.log("Database connected", students != undefined);
+        students = mongoClient.db("Test").collection("Students");
         /* retrieveStudents();
 
         async function retrieveStudents(): Promise<void> {
@@ -38,13 +42,13 @@ var Aufgabe3_4;
         console.log("I hear voices!");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
-        let url = Url.parse(_request.url, true); //Die in der Request enthaltene URL wird in ein assoziatives Array geparsed/umformatiert
         if (_request.url) {
+            let url = Url.parse(_request.url, true); //Die in der Request enthaltene URL wird in ein assoziatives Array geparsed/umformatiert
             let jsonString = JSON.stringify(url.query);
             console.log(jsonString);
-            _response.write(jsonString);
+            _response.write(url.query);
+            saveInDB(url.query);
         }
-        saveInDB(url.query);
         _response.end();
     }
     function saveInDB(_student) {
