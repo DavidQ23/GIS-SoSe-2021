@@ -33,8 +33,9 @@ export namespace Aufgabe3_4 {
 
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        console.log("Database connected", students != undefined);
         students = mongoClient.db("Test").collection("Students");
+        console.log("Database connected", students != undefined);
+        
 
         
         /* retrieveStudents();
