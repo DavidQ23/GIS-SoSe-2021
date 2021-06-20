@@ -15,19 +15,23 @@
     <form>
         <label for="firstname">Vorname</label>
         <input type="text" name="firstname" id="firstname">
-        
+
         <label for="name">Nachname</label>
         <input type="text" name="name" id="name">
-        
+
         <label for="registration">Matrikelnummer</label>
         <input type="number" name="registration" id="registration">
         
-        <label for="studypath">Studiengang</label>
-        <input type="text" name="studypath" id="studypath">
+        <label for="omb">OMB</label>
+        <input type="radio" id="omb" name="studypath" value="omb">
+        <label for="mkb">MKB</label>
+        <input type="radio" id="mkb" name="studypath" value="mkb">
+        <label for="mib">MIB</label>
+        <input type="radio" id="mib" name="studypath" value="mib">
     </form>
     <button type="button" id="SaveInDB">Student anlegen</button>
     <button type="button" id="DataFromDB">Alle Studenten anzeigen</button>
-    
+
     <h3>Alle Studenten</h3>
     <div id="Serverantwort">
 
