@@ -28,9 +28,10 @@ namespace Aufgabe3_4 {
         console.log(url);                                           
 
         let response: Response = await fetch(url);                  
-        let answer: string = await response.text();                 
+        let answer: string = await response.json();                 
         console.log(answer);
 
+       
         serverausgabe.innerHTML = answer;
     }
 }

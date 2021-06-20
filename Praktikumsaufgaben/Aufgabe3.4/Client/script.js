@@ -23,7 +23,7 @@ var Aufgabe3_4;
         url = url + "?" + query.toString();
         console.log(url);
         let response = await fetch(url);
-        let answer = await response.text();
+        let answer = await response.json();
         console.log(answer);
         serverausgabe.innerHTML = answer;
     }
