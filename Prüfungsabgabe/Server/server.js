@@ -54,16 +54,21 @@ var Rezepte;
             else {
                 let cursor = userlist.find();
                 let allUser = await cursor.toArray();
-                for (let i = 0; i < allUser.length; i++) {
-                    if (allUser[i].username == _user.username) {
-                        response = "Name existiert bereits! Bitte einen neuen Namen verwenden.";
-                        return response;
-                    }
-                }
-                userlist.insertOne(_user);
-                response = "Neuer Nutzer wurde angelegt.";
-                return response;
+                let serverResponse = await searchUser(allUser, _user);
+                return serverResponse;
             }
+        }
+        async function searchUser(_User, _user) {
+            let response;
+            for (let i = 0; i < _User.length; i++) {
+                if (_User[i].username == _user.username) {
+                    response = "Name existiert bereits! Bitte einen neuen Namen verwenden.";
+                    return response;
+                }
+            }
+            userlist.insertOne(_user);
+            response = "Neuer Nutzer wurde angelegt.";
+            return response;
         }
         /* async function loginUser(params:type) {
             

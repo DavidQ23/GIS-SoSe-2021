@@ -76,19 +76,23 @@ export namespace Rezepte {
             else {
                 let cursor: Mongo.Cursor = userlist.find();
                 let allUser: User[] = await cursor.toArray();
-                for (let i: number = 0; i < allUser.length; i++) {
-                    if (allUser[i].username == _user.username) {
-                        response = "Name existiert bereits! Bitte einen neuen Namen verwenden.";
-                        return response;
-                    }
-                }
-                userlist.insertOne(_user);
-                response = "Neuer Nutzer wurde angelegt.";
-                return response;
-
-
+                let serverResponse: string = await searchUser(allUser, _user);
+                return serverResponse;
             }
 
+        }
+
+        async function searchUser(_User: User[], _user: User): Promise<string> {
+            let response: string;
+            for (let i: number = 0; i < _User.length; i++) {
+                if (_User[i].username == _user.username) {
+                    response = "Name existiert bereits! Bitte einen neuen Namen verwenden.";
+                    return response;
+                }
+            }
+            userlist.insertOne(_user);
+            response = "Neuer Nutzer wurde angelegt.";
+            return response;
         }
 
         /* async function loginUser(params:type) {
