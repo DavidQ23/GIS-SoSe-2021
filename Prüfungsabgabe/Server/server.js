@@ -46,10 +46,9 @@ var Rezepte;
             await mongoClient.connect();
             userlist = mongoClient.db("Recipesite").collection("User"); //neue Collection in Variable
             console.log("Database connected", userlist != undefined);
-            let response;
-            if (_user.username && _user.password == "") {
-                response = "Bitte alle Felder ausfüllen!";
-                return response;
+            if (_user.username == "" || _user.password == "") {
+                let serverResponse = "Bitte alle Felder ausfüllen!";
+                return serverResponse;
             }
             else {
                 let cursor = userlist.find();

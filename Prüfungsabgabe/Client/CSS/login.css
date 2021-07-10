@@ -6,8 +6,8 @@ body {
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
+    display: flexbox;
+    flex-direction: column;
     flex-shrink: 0;
 }
 
