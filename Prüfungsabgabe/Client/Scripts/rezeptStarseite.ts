@@ -10,7 +10,9 @@ namespace Rezepte {
             let answer: string = await response.text();
             console.log(answer);
 
-            allRecipes.innerHTML = answer;
+            let spaceforrecipe: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+            spaceforrecipe.innerHTML = answer;
+            allRecipes.appendChild(spaceforrecipe);
         };
     }
 

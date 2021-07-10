@@ -9,7 +9,9 @@ var Rezepte;
             let response = await fetch(url);
             let answer = await response.text();
             console.log(answer);
-            allRecipes.innerHTML = answer;
+            let spaceforrecipe = document.createElement("div");
+            spaceforrecipe.innerHTML = answer;
+            allRecipes.appendChild(spaceforrecipe);
         };
     }
 })(Rezepte || (Rezepte = {}));
