@@ -1,0 +1,36 @@
+.container {
+    align-items: center;
+}
+
+#newRecipe {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border: 2px solid black;
+    margin: 10px;
+    background-color: rgb(241, 169, 169);
+}
+
+#newRecipe > h2 {
+    text-align: center;
+}
+
+#newRecipe form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+#newRecipe form label {
+    font-size: 120%;
+}
+
+#newRecipe form input{
+    width: 30%;
+}
+
+#newRecipe button {
+    margin: 15px;
+    width: 20%;
+}
