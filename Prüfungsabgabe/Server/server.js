@@ -55,13 +55,13 @@ var Rezepte;
                 let cursor = userlist.find();
                 let allUser = await cursor.toArray();
                 for (let i = 0; i < allUser.length; i++) {
-                    if (_user.username == allUser[i].username) {
-                        userlist.insertOne(_user);
-                        response = "Neuer Nutzer wurde angelegt.";
+                    if (allUser[i].username == _user.username) {
+                        response = "Name existiert bereits! Bitte einen neuen Namen verwenden.";
                         return response;
                     }
                 }
-                response = "Name existiert bereits! Bitte einen neuen Namen verwenden.";
+                userlist.insertOne(_user);
+                response = "Neuer Nutzer wurde angelegt.";
                 return response;
             }
         }

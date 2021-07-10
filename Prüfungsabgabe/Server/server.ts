@@ -66,9 +66,9 @@ export namespace Rezepte {
             await mongoClient.connect();
             userlist = mongoClient.db("Recipesite").collection("User");                                     //neue Collection in Variable
             console.log("Database connected", userlist != undefined);
-            
+
             let response: string;
-            
+
             if (_user.username && _user.password == "") {
                 response = "Bitte alle Felder ausfüllen!";
                 return response;
@@ -77,14 +77,15 @@ export namespace Rezepte {
                 let cursor: Mongo.Cursor = userlist.find();
                 let allUser: User[] = await cursor.toArray();
                 for (let i: number = 0; i < allUser.length; i++) {
-                    if (_user.username == allUser[i].username) {
-                        userlist.insertOne(_user);
-                        response = "Neuer Nutzer wurde angelegt.";
+                    if (allUser[i].username == _user.username) {
+                        response = "Name existiert bereits! Bitte einen neuen Namen verwenden.";
                         return response;
                     }
                 }
-                response = "Name existiert bereits! Bitte einen neuen Namen verwenden.";
+                userlist.insertOne(_user);
+                response = "Neuer Nutzer wurde angelegt.";
                 return response;
+
 
             }
 
