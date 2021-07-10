@@ -13,12 +13,11 @@ export namespace Rezepte {
     export interface User {
         username: string;
         password: string;
-        //email: string;
     }
 
 
     let userlist: Mongo.Collection;
-    let mongoURL: string = "mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/test";
+    let mongoURL: string = "mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
     console.log("Starting server");
     let port: number = Number(process.env.PORT);
@@ -48,11 +47,15 @@ export namespace Rezepte {
             let jsonString: string = JSON.stringify(url.query);
             console.log(jsonString);
 
-            if (url.pathname == "/registartion") {
+            if (url.pathname == "/registration") {
                 let user: User = JSON.parse(jsonString);                            //Json Objekt
                 let mongoResponse: string = await registrateUser(mongoURL, user);
                 _response.write(mongoResponse);
             }
+            /* else if (url.pathname == "/login") {
+                let user: User = JSON.parse(jsonString);
+                let mongoResponse: string = await loginUser(mongoURL, user);
+            } */
 
         }
 
@@ -62,18 +65,30 @@ export namespace Rezepte {
             await mongoClient.connect();
             userlist = mongoClient.db("Recipesite").collection("User");                                     //neue Collection in Variable
             console.log("Database connected", userlist != undefined);
-            let response: string;
             let cursor: Mongo.Cursor = userlist.find();
-            if (cursor) {
-                response = "Es existiert bereits ein Nutzer mit diesem Namen.";
+            let response: string;
+            if (_user.username && _user.password == "") {
+                response = "Bitte alle Felder ausfüllen!";
                 return response;
             }
             else {
-                userlist.insertOne(_user);
-                response = "Neuer Nutzer wurde registriert.";
+                let allUser: User[] = await cursor.toArray();
+                for (let i: number = 0; i < allUser.length; i++) {
+                    if (_user.username == allUser[i].username) {
+                        userlist.insertOne(_user);
+                        response = "Neuer Nutzer wurde angelegt.";
+                        return response;
+                    }
+                }
+                response = "Name existiert bereits! Bitte einen neuen Namen verwenden.";
                 return response;
+                
             }
 
         }
+
+        /* async function loginUser(params:type) {
+            
+        } */
     }
 }
