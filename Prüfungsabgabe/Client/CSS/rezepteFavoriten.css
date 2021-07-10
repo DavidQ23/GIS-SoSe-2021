@@ -1,0 +1,21 @@
+#savedRecipelist {
+    display: flex;
+    flex-direction: row;
+}
+
+.savedRecipe {
+    margin: 5px;
+    border: 1px solid black;
+    padding: 15px;
+    background-color: rgb(255, 183, 251);
+    box-shadow: black;
+}
+
+.savedRecipe > h2 {
+    text-align: center;
+    color: royalblue;
+}
+
+.savedRecipe p {
+    width: 90%;
+}
