@@ -29,9 +29,11 @@ var Rezepte;
             let url = Url.parse(_request.url, true); //-> assoziatives Array 
             let jsonString = JSON.stringify(url.query);
             console.log(jsonString);
-            let user = JSON.parse(jsonString); //Json Objekt
-            let mongoResponse = await registrateUser(mongoURL, user);
-            _response.write(mongoResponse);
+            if (url.pathname == "/registartion") {
+                let user = JSON.parse(jsonString); //Json Objekt
+                let mongoResponse = await registrateUser(mongoURL, user);
+                _response.write(mongoResponse);
+            }
         }
         async function registrateUser(_url, _user) {
             let options = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -40,7 +42,7 @@ var Rezepte;
             userlist = mongoClient.db("Recipesite").collection("User"); //neue Collection in Variable
             console.log("Database connected", userlist != undefined);
             let response;
-            let cursor = userlist.find({ "username": "_user" });
+            let cursor = userlist.find();
             if (cursor) {
                 response = "Es existiert bereits ein Nutzer mit diesem Namen.";
                 return response;

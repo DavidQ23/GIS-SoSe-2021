@@ -48,9 +48,12 @@ export namespace Rezepte {
             let jsonString: string = JSON.stringify(url.query);
             console.log(jsonString);
 
-            let user: User = JSON.parse(jsonString);                            //Json Objekt
-            let mongoResponse: string = await registrateUser(mongoURL, user);
-            _response.write(mongoResponse);
+            if (url.pathname == "/registartion") {
+                let user: User = JSON.parse(jsonString);                            //Json Objekt
+                let mongoResponse: string = await registrateUser(mongoURL, user);
+                _response.write(mongoResponse);
+            }
+
         }
 
         async function registrateUser(_url: string, _user: User): Promise<string> {
@@ -60,7 +63,7 @@ export namespace Rezepte {
             userlist = mongoClient.db("Recipesite").collection("User");                                     //neue Collection in Variable
             console.log("Database connected", userlist != undefined);
             let response: string;
-            let cursor: Mongo.Cursor = userlist.find({"username": "_user"});
+            let cursor: Mongo.Cursor = userlist.find();
             if (cursor) {
                 response = "Es existiert bereits ein Nutzer mit diesem Namen.";
                 return response;
@@ -70,7 +73,7 @@ export namespace Rezepte {
                 response = "Neuer Nutzer wurde registriert.";
                 return response;
             }
-            
+
         }
     }
 }
