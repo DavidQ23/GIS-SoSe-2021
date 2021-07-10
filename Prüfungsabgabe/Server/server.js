@@ -83,7 +83,7 @@ var Rezepte;
             let options = { useNewUrlParser: true, useUnifiedTopology: true };
             let mongoClient = new Mongo.MongoClient(_url, options);
             await mongoClient.connect();
-            let recipeList = mongoClient.db("recipelist").collection("Recipes");
+            let recipeList = mongoClient.db("Recipelist").collection("Recipes");
             console.log("Database connected", recipeList != undefined);
             let cursor = recipeList.find();
             let result = await cursor.toArray();
