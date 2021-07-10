@@ -40,7 +40,7 @@ var Rezepte;
             userlist = mongoClient.db("Recipesite").collection("User"); //neue Collection in Variable
             console.log("Database connected", userlist != undefined);
             let response;
-            let cursor = userlist.find({ username: _user });
+            let cursor = userlist.find({ "username": "_user" });
             if (cursor) {
                 response = "Es existiert bereits ein Nutzer mit diesem Namen.";
                 return response;

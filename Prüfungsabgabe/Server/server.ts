@@ -60,7 +60,7 @@ export namespace Rezepte {
             userlist = mongoClient.db("Recipesite").collection("User");                                     //neue Collection in Variable
             console.log("Database connected", userlist != undefined);
             let response: string;
-            let cursor: Mongo.Cursor = userlist.find({username: _user});
+            let cursor: Mongo.Cursor = userlist.find({"username": "_user"});
             if (cursor) {
                 response = "Es existiert bereits ein Nutzer mit diesem Namen.";
                 return response;
