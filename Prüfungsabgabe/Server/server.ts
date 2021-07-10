@@ -18,7 +18,7 @@ export namespace Rezepte {
 
 
     let userlist: Mongo.Collection;
-    let mongoURL: string = "mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    let mongoURL: string = "mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/test";
 
     console.log("Starting server");
     let port: number = Number(process.env.PORT);

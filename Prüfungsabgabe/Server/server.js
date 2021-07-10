@@ -7,7 +7,7 @@ const Mongo = require("mongodb");
 var Rezepte;
 (function (Rezepte) {
     let userlist;
-    let mongoURL = "mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    let mongoURL = "mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/test";
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
