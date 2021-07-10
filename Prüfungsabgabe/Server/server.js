@@ -46,14 +46,18 @@ var Rezepte;
             await mongoClient.connect();
             userlist = mongoClient.db("Recipesite").collection("User"); //neue Collection in Variable
             console.log("Database connected", userlist != undefined);
-            if (_user.username == "" || _user.password == "") {
-                let serverResponse = "Bitte alle Felder ausfüllen!";
-                return serverResponse;
-            }
-            else {
+            if (_user.username != "" && _user.password != "") {
                 let cursor = userlist.find();
                 let allUser = await cursor.toArray();
                 let serverResponse = await searchUser(allUser, _user);
+                if (serverResponse == "Name existiert bereits! Bitte einen neuen Namen verwenden.") {
+                    return serverResponse;
+                }
+                userlist.insertOne(_user);
+                return serverResponse;
+            }
+            else {
+                let serverResponse = "Bitte alle Felder ausfüllen!";
                 return serverResponse;
             }
         }
@@ -65,8 +69,7 @@ var Rezepte;
                     return response;
                 }
             }
-            userlist.insertOne(_user);
-            response = "Neuer Nutzer wurde angelegt.";
+            response = _user.username;
             return response;
         }
         /* async function loginUser(params:type) {
