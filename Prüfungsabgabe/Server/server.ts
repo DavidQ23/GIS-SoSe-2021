@@ -39,6 +39,7 @@ export namespace Rezepte {
     }
 
     async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
+        console.log("I hear voices!");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
 
@@ -65,9 +66,12 @@ export namespace Rezepte {
             await mongoClient.connect();
             userlist = mongoClient.db("Recipesite").collection("User");                                     //neue Collection in Variable
             console.log("Database connected", userlist != undefined);
-            let cursor: Mongo.Cursor = userlist.find();
+            //let cursor: Mongo.Cursor = userlist.find();
             let response: string;
-            if (_user.username && _user.password == "") {
+            userlist.insertOne(_user);
+            response = "Neuer Nutzer wurde angelegt.";
+            return response;
+            /* if (_user.username && _user.password == "") {
                 response = "Bitte alle Felder ausfüllen!";
                 return response;
             }
@@ -82,8 +86,8 @@ export namespace Rezepte {
                 }
                 response = "Name existiert bereits! Bitte einen neuen Namen verwenden.";
                 return response;
-                
-            }
+
+            } */
 
         }
 
