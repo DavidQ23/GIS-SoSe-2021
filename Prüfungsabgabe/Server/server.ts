@@ -6,7 +6,16 @@ export namespace Rezepte {
 
     export interface Recipe {
         title: string;
-        ingrediants: string;
+        ingrediant1: string;
+        ingrediant2: string;
+        ingrediant3: string;
+        ingrediant4: string;
+        ingrediant5: string;
+        ingrediant6: string;
+        ingrediant7: string;
+        ingrediant8: string;
+        ingrediant9: string;
+        ingrediant10: string;
         instruction: string;
     }
 
@@ -57,6 +66,10 @@ export namespace Rezepte {
                 let user: User = JSON.parse(jsonString);
                 let mongoResponse: string = await loginUser(mongoURL, user);
             } */
+            else if (url.pathname == "/buildsite") {
+                let recipeList: Recipe[] = await loadSite(mongoURL);
+                _response.write(recipeList);
+            }
 
         }
 
@@ -99,5 +112,16 @@ export namespace Rezepte {
         /* async function loginUser(params:type) {
             
         } */
+
+        async function loadSite(_url: string): Promise<Recipe[]> {
+            let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+            let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+            await mongoClient.connect();
+            let recipeList: Mongo.Collection = mongoClient.db("recipelist").collection("Recipes");
+            console.log("Database connected", recipeList != undefined);
+            let cursor: Mongo.Cursor = recipeList.find();                                                     
+            let result: Recipe[] = await cursor.toArray();                                                
+            return result;
+        }
     }
 }

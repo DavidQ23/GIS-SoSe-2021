@@ -39,6 +39,10 @@ var Rezepte;
                 let user: User = JSON.parse(jsonString);
                 let mongoResponse: string = await loginUser(mongoURL, user);
             } */
+            else if (url.pathname == "/buildsite") {
+                let recipeList = await loadSite(mongoURL);
+                _response.write(recipeList);
+            }
         }
         async function registrateUser(_url, _user) {
             let options = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -75,6 +79,16 @@ var Rezepte;
         /* async function loginUser(params:type) {
             
         } */
+        async function loadSite(_url) {
+            let options = { useNewUrlParser: true, useUnifiedTopology: true };
+            let mongoClient = new Mongo.MongoClient(_url, options);
+            await mongoClient.connect();
+            let recipeList = mongoClient.db("recipelist").collection("Recipes");
+            console.log("Database connected", recipeList != undefined);
+            let cursor = recipeList.find();
+            let result = await cursor.toArray();
+            return result;
+        }
     }
 })(Rezepte = exports.Rezepte || (exports.Rezepte = {}));
 //# sourceMappingURL=server.js.map
