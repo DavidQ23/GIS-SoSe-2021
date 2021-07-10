@@ -40,7 +40,7 @@ export namespace Rezepte {
     }
 
     async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
-        _response.setHeader("content-type", "application/json; charset=utf-8");
+        _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
 
         if (_request.url) {

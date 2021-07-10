@@ -23,7 +23,7 @@ var Rezepte;
         console.log("Listening");
     }
     async function handleRequest(_request, _response) {
-        _response.setHeader("content-type", "application/json; charset=utf-8");
+        _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
             let url = Url.parse(_request.url, true); //-> assoziatives Array 
