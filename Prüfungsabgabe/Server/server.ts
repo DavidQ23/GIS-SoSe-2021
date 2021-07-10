@@ -13,7 +13,7 @@ export namespace Rezepte {
     export interface User {
         username: string;
         password: string;
-        email: string;
+        //email: string;
     }
 
 
