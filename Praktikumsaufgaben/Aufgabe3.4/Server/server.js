@@ -21,7 +21,7 @@ var Aufgabe3_4;
         server.listen(port);
     }
     function handleListen() {
-        console.log("Listening");
+        console.log("Waiting");
     }
     async function handleRequest(_request, _response) {
         console.log("I hear voices!");
@@ -47,7 +47,7 @@ var Aufgabe3_4;
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options); //Datenbank wird in Variable angelegt
         await mongoClient.connect(); //mit angelegter Datanbank verbinden
-        students = mongoClient.db("Test").collection("Students"); //Eine Collection einer Datanbank in Variable legen
+        students = mongoClient.db("Recipesite").collection("User"); //Eine Collection einer Datanbank in Variable legen
         console.log("Database connected", students != undefined); //Feedback für Konsole
         students.insertOne(_student); //Student, der als Parameter beigegeben wurde, in ausgewählter Collection speichern
         let response = "Daten erfolgreich in Datenbank gespeichert"; //Rückgabewert der Funktion
