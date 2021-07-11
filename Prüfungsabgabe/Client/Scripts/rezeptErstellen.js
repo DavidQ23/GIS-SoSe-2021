@@ -10,13 +10,13 @@ var Rezepte;
         let url = "https://davidqgissose2021.herokuapp.com/saveRecipe";
         let query = new URLSearchParams(formData);
         let loggedUser = localStorage.getItem("username");
-        url = url + "?" + query.toString() + "&author=" + loggedUser;
+        url = url + "?" + query.toString() + "&author=" + loggedUser + "?loggedUser=" + loggedUser;
         console.log(url);
         let response = await fetch(url);
         let answer = await response.text();
         console.log(answer);
         newRecipeForm.reset();
-        window.location.reload();
+        //window.location.reload();
     }
     if (document.querySelector("title").getAttribute("id") == "createRecipe") {
         window.onload = async function buildSite() {
