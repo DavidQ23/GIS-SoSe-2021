@@ -16,6 +16,7 @@ var Rezepte;
         let answer = await response.text();
         console.log(answer);
         newRecipeForm.reset();
+        window.location.reload();
     }
     if (document.querySelector("title").getAttribute("id") == "createRecipe") {
         window.onload = async function buildSite() {
@@ -112,6 +113,7 @@ var Rezepte;
                     let response = await fetch(url);
                     let answer = await response.text();
                     console.log(answer);
+                    //window.location.reload();
                 }
             }
         };

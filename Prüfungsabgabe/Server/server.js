@@ -105,7 +105,7 @@ var Rezepte;
         }
         async function loadmyRecipesite(_recipe) {
             let loggedUser = _recipe.loggedUser;
-            let cursor = recipeList.find({ author: loggedUser });
+            let cursor = recipeList.find({ loggedUser: loggedUser });
             let result = await cursor.toArray();
             return result;
         }

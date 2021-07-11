@@ -33,6 +33,7 @@ namespace Rezepte {
         let answer: string = await response.text();
         console.log(answer);
         newRecipeForm.reset();
+        window.location.reload();
     }
 
     if (document.querySelector("title").getAttribute("id") == "createRecipe") {
@@ -154,6 +155,7 @@ namespace Rezepte {
                     let answer: string = await response.text();
                     console.log(answer);
 
+                    //window.location.reload();
                 
                 }
 
