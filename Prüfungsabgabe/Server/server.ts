@@ -70,7 +70,7 @@ export namespace Rezepte {
 
             else if (url.pathname == "/buildsite") {
                 let recipeList: Recipe[] = await loadSite(mongoURL);
-                _response.write(recipeList);
+                _response.write(JSON.stringify(recipeList));
             }
             /* else if (url.pathname == "/addfavourite") {
                 let favouredRecipe: Recipe = JSON.parse(jsonString);
