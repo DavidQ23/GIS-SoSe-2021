@@ -161,7 +161,7 @@ namespace Rezepte {
                     let answer: string = await response.text();
                     console.log(answer);
 
-                    //window.location.reload();
+                    window.location.reload();
                 
                 }
 

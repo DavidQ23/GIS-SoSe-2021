@@ -100,7 +100,7 @@ var Rezepte;
                     let response = await fetch(url);
                     let answer = await response.text();
                     console.log(answer);
-                    //window.location.reload();
+                    window.location.reload();
                 }
             }
         };
