@@ -33,7 +33,7 @@ namespace Rezepte {
                 let spaceforsinglerecipe: HTMLDivElement = <HTMLDivElement>document.createElement("div");
                 let spaceforingradiants: HTMLDivElement = <HTMLDivElement>document.createElement("div");
                 let spaceforinstruction: HTMLDivElement = <HTMLDivElement>document.createElement("div");
-                let spaceforfavouriteButton: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+                //let spaceforfavouriteButton: HTMLDivElement = <HTMLDivElement>document.createElement("div");
 
                 let title: HTMLParagraphElement = <HTMLParagraphElement>document.createElement("p");
                 title.innerHTML = everyRecipe[i].title;

@@ -14,7 +14,7 @@ var Rezepte;
                 let spaceforsinglerecipe = document.createElement("div");
                 let spaceforingradiants = document.createElement("div");
                 let spaceforinstruction = document.createElement("div");
-                let spaceforfavouriteButton = document.createElement("div");
+                //let spaceforfavouriteButton: HTMLDivElement = <HTMLDivElement>document.createElement("div");
                 let title = document.createElement("p");
                 title.innerHTML = everyRecipe[i].title;
                 title.classList.add("headline");
