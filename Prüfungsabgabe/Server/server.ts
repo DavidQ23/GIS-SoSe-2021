@@ -31,13 +31,13 @@ export namespace Rezepte {
     let favList: Mongo.Collection;
     let recipeList: Mongo.Collection;
 
-    async function connectWithDB(_url: string): Promise<void> {
+    async function connectWithDB(_url: string): Promise<void> {                                                 //Mit Datenbank verbinden
         let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
         
 
-        userlist = mongoClient.db("Recipesite").collection("User");
+        userlist = mongoClient.db("Recipesite").collection("User");                                             //Collections der jeweiligen DB in Variable
         favList = mongoClient.db("Recipesite").collection("favList");
         recipeList = mongoClient.db("Recipesite").collection("Recipes");
     }
@@ -124,7 +124,7 @@ export namespace Rezepte {
         }
 
         async function deleteRecipe(_recipe: Recipe): Promise<string> {
-            recipeList.deleteOne(_recipe);
+            recipeList.deleteOne(_recipe);                                                  //Aus Collection löschen
             let serverResponse: string = "Rezept wurde erfolgreich gelöscht";
             return serverResponse;
         }
@@ -137,9 +137,9 @@ export namespace Rezepte {
 
         async function loadFavSite(_recipe: Recipe): Promise<Recipe[]> {
             let loggedUser: string = _recipe.loggedUser;
-            let cursor: Mongo.Cursor = favList.find({loggedUser: loggedUser});
-            let result: Recipe[] = await cursor.toArray();
-            return result;
+            let cursor: Mongo.Cursor = favList.find({loggedUser: loggedUser});                  //Prüfung, ob User eingeloggt
+            let result: Recipe[] = await cursor.toArray();                                      //Eintrag in Collection wird in Arry umgewandelt
+            return result;      
 
         }
 
@@ -155,7 +155,7 @@ export namespace Rezepte {
 
         function saveRecipe(_recipe: Recipe): string {
             
-            recipeList.insertOne(_recipe);
+            recipeList.insertOne(_recipe);                                                  //+document in Collcetion der DB
             let serverResponse: string = "Rezept wurde erstellt.";
             return serverResponse;
 
@@ -164,9 +164,9 @@ export namespace Rezepte {
         async function loginUser(_user: User): Promise<string> {
 
             if (_user.username != "" && _user.password != "") {
-                let cursor: Mongo.Cursor = userlist.find();
+                let cursor: Mongo.Cursor = userlist.find();                                 //Durchgang durch gesamte Collection
                 let allUser: User[] = await cursor.toArray();
-                let serverresponse: string = await findUser(allUser, _user);
+                let serverresponse: string = await findUser(allUser, _user);                //auf Funktion warten
                 return serverresponse;
             }
             else {
@@ -179,7 +179,7 @@ export namespace Rezepte {
         function findUser(_allUser: User[], _user: User): string {
             let response: string;
             for (let i: number = 0; i < _allUser.length; i++) {
-                if (_allUser[i].username == _user.username) {
+                if (_allUser[i].username == _user.username) {                               //Nutzer bereits mit Acc?
                     response = _user.username;
                     return response;
                 }

@@ -9,7 +9,7 @@ var Rezepte;
             let response = await fetch(url);
             let answer = await response.text();
             console.log(answer);
-            let everyRecipe = JSON.parse(answer);
+            let everyRecipe = JSON.parse(answer); //String zu JSON Obj (Array)
             for (let i = 0; i < everyRecipe.length; i++) {
                 let spaceforsinglerecipe = document.createElement("div");
                 spaceforsinglerecipe.classList.add("singlerecipe");
@@ -26,7 +26,7 @@ var Rezepte;
                 ingradiantheader.innerHTML = "Zutaten:";
                 spaceforingradiants.appendChild(ingradiantheader);
                 let ingradiant1 = document.createElement("p");
-                if (everyRecipe[i].ingradiant1 != undefined) {
+                if (everyRecipe[i].ingradiant1 != undefined) { //Prüfen auf Eintrag
                     ingradiant1.innerHTML = everyRecipe[i].ingradiant1;
                     spaceforingradiants.appendChild(ingradiant1);
                 }
@@ -94,7 +94,7 @@ var Rezepte;
                 addfavouriteButton.addEventListener("click", addFavourite);
                 allRecipes.appendChild(spaceforsinglerecipe);
                 async function addFavourite() {
-                    let loggedUser = localStorage.getItem("username");
+                    let loggedUser = localStorage.getItem("username"); //Check ob Nutzer eingeloggt
                     let url = "https://davidqgissose2021.herokuapp.com/addfavourite";
                     url = url + "?" + "title=" + everyRecipe[i].title + "&ingradiant1=" + everyRecipe[i].ingradiant1 + "&ingradiant2=" + everyRecipe[i].ingradiant2 + "&ingradiant3=" + everyRecipe[i].ingradiant3 + "&ingradiant4=" + everyRecipe[i].ingradiant4 + "&ingradiant5=" + everyRecipe[i].ingradiant5 + "&ingradiant6=" + everyRecipe[i].ingradiant6 + "&ingradiant7=" + everyRecipe[i].ingradiant7 + "&ingradiant8=" + everyRecipe[i].ingradiant8 + "&ingradiant9=" + everyRecipe[i].ingradiant9 + "&ingradiant10=" + everyRecipe[i].ingradiant10 + "&instruction=" + everyRecipe[i].instruction + "&author=" + everyRecipe[i].author + "&loggedUser=" + loggedUser;
                     console.log(url);

@@ -13,7 +13,7 @@ var Rezepte;
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        userlist = mongoClient.db("Recipesite").collection("User");
+        userlist = mongoClient.db("Recipesite").collection("User"); //Collections der jeweiligen DB in Variable
         favList = mongoClient.db("Recipesite").collection("favList");
         recipeList = mongoClient.db("Recipesite").collection("Recipes");
     }
@@ -88,7 +88,7 @@ var Rezepte;
             _response.end();
         }
         async function deleteRecipe(_recipe) {
-            recipeList.deleteOne(_recipe);
+            recipeList.deleteOne(_recipe); //Aus Collection löschen
             let serverResponse = "Rezept wurde erfolgreich gelöscht";
             return serverResponse;
         }
@@ -99,8 +99,8 @@ var Rezepte;
         }
         async function loadFavSite(_recipe) {
             let loggedUser = _recipe.loggedUser;
-            let cursor = favList.find({ loggedUser: loggedUser });
-            let result = await cursor.toArray();
+            let cursor = favList.find({ loggedUser: loggedUser }); //Prüfung, ob User eingeloggt
+            let result = await cursor.toArray(); //Eintrag in Collection wird in Arry umgewandelt
             return result;
         }
         async function loadmyRecipesite(_recipe) {
@@ -110,15 +110,15 @@ var Rezepte;
             return result;
         }
         function saveRecipe(_recipe) {
-            recipeList.insertOne(_recipe);
+            recipeList.insertOne(_recipe); //+document in Collcetion der DB
             let serverResponse = "Rezept wurde erstellt.";
             return serverResponse;
         }
         async function loginUser(_user) {
             if (_user.username != "" && _user.password != "") {
-                let cursor = userlist.find();
+                let cursor = userlist.find(); //Durchgang durch gesamte Collection
                 let allUser = await cursor.toArray();
-                let serverresponse = await findUser(allUser, _user);
+                let serverresponse = await findUser(allUser, _user); //auf Funktion warten
                 return serverresponse;
             }
             else {
@@ -129,7 +129,7 @@ var Rezepte;
         function findUser(_allUser, _user) {
             let response;
             for (let i = 0; i < _allUser.length; i++) {
-                if (_allUser[i].username == _user.username) {
+                if (_allUser[i].username == _user.username) { //Nutzer bereits mit Acc?
                     response = _user.username;
                     return response;
                 }
