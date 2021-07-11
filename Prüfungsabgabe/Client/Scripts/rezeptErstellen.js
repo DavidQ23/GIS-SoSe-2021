@@ -104,8 +104,8 @@ var Rezepte;
                 spaceforsingleRecipe.appendChild(spaceforinstruction);
                 spaceforsingleRecipe.appendChild(author);
                 spaceforsingleRecipe.appendChild(deleteButton);
-                allRecipe.appendChild(spaceforsingleRecipe);
                 deleteButton.addEventListener("click", deleteRecipe);
+                allRecipe.appendChild(spaceforsingleRecipe);
                 async function deleteRecipe() {
                     let loggedUser = localStorage.getItem("username");
                     let url = "https://davidqgissose2021.herokuapp.com/deleteRecipe";

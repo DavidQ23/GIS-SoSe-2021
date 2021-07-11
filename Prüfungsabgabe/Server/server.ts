@@ -123,13 +123,13 @@ export namespace Rezepte {
 
         }
 
-        function deleteRecipe(_recipe: Recipe): string {
+        async function deleteRecipe(_recipe: Recipe): Promise<string> {
             recipeList.deleteOne(_recipe);
             let serverResponse: string = "Rezept wurde erfolgreich gelöscht";
             return serverResponse;
         }
 
-        function deleteFav(_recipe: Recipe): string {
+        async function deleteFav(_recipe: Recipe): Promise<string> {
             favList.deleteOne(_recipe);
             let serverResponse: string = "Rezept wurde aus Favoriten entfernt.";
             return serverResponse;

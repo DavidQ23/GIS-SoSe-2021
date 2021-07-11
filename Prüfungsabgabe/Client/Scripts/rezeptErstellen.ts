@@ -141,10 +141,12 @@ namespace Rezepte {
                 spaceforsingleRecipe.appendChild(spaceforingradiants);
                 spaceforsingleRecipe.appendChild(spaceforinstruction);
                 spaceforsingleRecipe.appendChild(author);
+
                 spaceforsingleRecipe.appendChild(deleteButton);
+                deleteButton.addEventListener("click", deleteRecipe);
                 allRecipe.appendChild(spaceforsingleRecipe);
 
-                deleteButton.addEventListener("click", deleteRecipe);
+                
 
                 async function deleteRecipe(): Promise<void> {
                     let loggedUser: string = localStorage.getItem("username");

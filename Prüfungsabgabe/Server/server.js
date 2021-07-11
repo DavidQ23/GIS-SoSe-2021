@@ -87,12 +87,12 @@ var Rezepte;
             }
             _response.end();
         }
-        function deleteRecipe(_recipe) {
+        async function deleteRecipe(_recipe) {
             recipeList.deleteOne(_recipe);
             let serverResponse = "Rezept wurde erfolgreich gelöscht";
             return serverResponse;
         }
-        function deleteFav(_recipe) {
+        async function deleteFav(_recipe) {
             favList.deleteOne(_recipe);
             let serverResponse = "Rezept wurde aus Favoriten entfernt.";
             return serverResponse;
