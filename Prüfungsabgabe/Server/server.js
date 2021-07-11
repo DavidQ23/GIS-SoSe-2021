@@ -39,10 +39,20 @@ var Rezepte;
                 let user: User = JSON.parse(jsonString);
                 let mongoResponse: string = await loginUser(mongoURL, user);
             } */
-            else if (url.pathname == "/buildsite") {
-                let recipeList = await loadSite(mongoURL);
+            /* else if (url.pathname == "/buildsite") {
+                let recipeList: Recipe[] = await loadSite(mongoURL);
                 _response.write(recipeList);
             }
+            else if (url.pathname == "/addfavourite") {
+                let favouredRecipe: Recipe = JSON.parse(jsonString);
+                let mongoResponse: string = await favourRecipe(mongoURL, favouredRecipe);
+                _response.write(mongoResponse);
+            }
+            _response.end();
+
+        }
+
+        async function favourRecipe(_url: string, _recipe: Recipe): Promise<string> {*/
         }
         async function registrateUser(_url, _user) {
             let options = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -79,16 +89,16 @@ var Rezepte;
         /* async function loginUser(params:type) {
             
         } */
-        async function loadSite(_url) {
-            let options = { useNewUrlParser: true, useUnifiedTopology: true };
-            let mongoClient = new Mongo.MongoClient(_url, options);
+        /* async function loadSite(_url: string): Promise<Recipe[]> {
+            let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+            let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
             await mongoClient.connect();
-            let recipeList = mongoClient.db("Recipelist").collection("Recipes");
+            let recipeList: Mongo.Collection = mongoClient.db("Recipelist").collection("Recipes");
             console.log("Database connected", recipeList != undefined);
-            let cursor = recipeList.find();
-            let result = await cursor.toArray();
+            let cursor: Mongo.Cursor = recipeList.find();
+            let result: Recipe[] = await cursor.toArray();
             return result;
-        }
+        } */
     }
 })(Rezepte = exports.Rezepte || (exports.Rezepte = {}));
 //# sourceMappingURL=server.js.map

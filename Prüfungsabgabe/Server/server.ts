@@ -66,12 +66,22 @@ export namespace Rezepte {
                 let user: User = JSON.parse(jsonString);
                 let mongoResponse: string = await loginUser(mongoURL, user);
             } */
-            else if (url.pathname == "/buildsite") {
+            /* else if (url.pathname == "/buildsite") {
                 let recipeList: Recipe[] = await loadSite(mongoURL);
                 _response.write(recipeList);
             }
+            else if (url.pathname == "/addfavourite") {
+                let favouredRecipe: Recipe = JSON.parse(jsonString);
+                let mongoResponse: string = await favourRecipe(mongoURL, favouredRecipe);
+                _response.write(mongoResponse);
+            }
+            _response.end();
 
         }
+
+        async function favourRecipe(_url: string, _recipe: Recipe): Promise<string> {*/
+            
+        } 
 
         async function registrateUser(_url: string, _user: User): Promise<string> {
             let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -87,7 +97,6 @@ export namespace Rezepte {
                 if (serverResponse == "Name existiert bereits! Bitte einen neuen Namen verwenden.") {
                     return serverResponse;
                 }
-                
                 userlist.insertOne(_user);
                 return serverResponse;
             }
@@ -114,7 +123,7 @@ export namespace Rezepte {
             
         } */
 
-        async function loadSite(_url: string): Promise<Recipe[]> {
+        /* async function loadSite(_url: string): Promise<Recipe[]> {
             let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
             let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
             await mongoClient.connect();
@@ -123,6 +132,6 @@ export namespace Rezepte {
             let cursor: Mongo.Cursor = recipeList.find();                                                     
             let result: Recipe[] = await cursor.toArray();                                                
             return result;
-        }
+        } */
     }
 }
