@@ -13,6 +13,7 @@ namespace Rezepte {
         ingradiant10: string;
         instruction: string;
         author: string;
+        loggedUser: string;
     }
 
     let newRecipeForm: HTMLFormElement = <HTMLFormElement>document.getElementById("newRecipeForm");
