@@ -161,7 +161,7 @@ export namespace Rezepte {
             let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
             let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
             await mongoClient.connect();
-            let recipeList: Mongo.Collection = mongoClient.db("Recipelist").collection("Recipes");
+            let recipeList: Mongo.Collection = mongoClient.db("Recipesite").collection("Recipes");
             console.log("Database connected", recipeList != undefined);
             let cursor: Mongo.Cursor = recipeList.find();
             let result: Recipe[] = await cursor.toArray();
