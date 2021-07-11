@@ -14,11 +14,14 @@ var Rezepte;
                 let spaceforsinglerecipe = document.createElement("div");
                 let spaceforingradiants = document.createElement("div");
                 let spaceforinstruction = document.createElement("div");
-                //let spaceforfavouriteButton: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+                let spaceforfavouriteButton = document.createElement("div");
                 let title = document.createElement("p");
                 title.innerHTML = everyRecipe[i].title;
                 title.classList.add("headline");
                 spaceforsinglerecipe.appendChild(title);
+                let ingradiantheader = document.createElement("p");
+                ingradiantheader.innerHTML = "Zutaten:";
+                spaceforingradiants.appendChild(ingradiantheader);
                 let ingradiant1 = document.createElement("p");
                 if (everyRecipe[i].ingradiant1 != undefined) {
                     ingradiant1.innerHTML = everyRecipe[i].ingradiant1;
@@ -69,25 +72,30 @@ var Rezepte;
                     ingradiant10.innerHTML = everyRecipe[i].ingradiant10;
                     spaceforingradiants.appendChild(ingradiant10);
                 }
+                let instructionheader = document.createElement("p");
+                instructionheader.innerHTML = "Zubereitung:";
+                spaceforinstruction.appendChild(instructionheader);
                 let instruction = document.createElement("p");
                 instruction.innerHTML = everyRecipe[i].instruction;
                 spaceforinstruction.appendChild(instruction);
+                let author = document.createElement("p");
+                author.innerHTML = "Erstellt von: " + everyRecipe[i].author;
                 spaceforsinglerecipe.appendChild(spaceforingradiants);
-                spaceforsinglerecipe.appendChild(instruction);
+                spaceforsinglerecipe.appendChild(spaceforinstruction);
+                spaceforsinglerecipe.appendChild(author);
                 allRecipes.appendChild(spaceforsinglerecipe);
-                /* let addfavouriteButton: HTMLButtonElement = <HTMLButtonElement>document.createElement("button");
+                let addfavouriteButton = document.createElement("button");
                 addfavouriteButton.innerHTML = "Favorisieren";
                 spaceforfavouriteButton.appendChild(addfavouriteButton);
-                addfavouriteButton.addEventListener("click", addFavourite); */
+                addfavouriteButton.addEventListener("click", addFavourite);
             }
-            /* async function addFavourite(): Promise<void> {
-                let url: string = "https://davidqgissose2021.herokuapp.com/addfavourite";
+            async function addFavourite() {
+                let url = "https://davidqgissose2021.herokuapp.com/addfavourite";
                 console.log(url);
-
-                let response: Response = await fetch(url);
-                let answer: string = await response.text();
+                let response = await fetch(url);
+                let answer = await response.text();
                 console.log(answer);
-            } */
+            }
         };
     }
 })(Rezepte || (Rezepte = {}));

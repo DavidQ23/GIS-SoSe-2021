@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rezept erstellen</title>
+    <title id="createRecipe">Rezept erstellen</title>
     <link rel="stylesheet" href="../CSS/navigation.css">
     <link rel="stylesheet" href="../CSS/rezepteErstellen.css">
+    <script src="../Scripts/rezeptErstellen.js" defer></script>
     
 </head>
 <body>
@@ -23,34 +24,39 @@
 
         <div id="newRecipe">
             <h2>Mein Rezept erstellen</h2>
-            <form>
+            <form id="newRecipeForm">
                 <label for="recipeTitle">Name des Rezeptes</label>
                 <input type="text" name="recipeTitle">
                 <label for="ingrediant1">Zutat</label>
                 <input type="text" name="ingrediant1">
                 <label for="ingrediant2">Zutat</label>
                 <input type="text" name="ingrediant2">
-                <label for="ingrediant3">Zutat</label>
-                <input type="text" name="ingrediant3">
-                <label for="ingrediant4">Zutat</label>
-                <input type="text" name="ingrediant4">
-                <label for="ingrediant5">Zutat</label>
-                <input type="text" name="ingrediant5">
-                <label for="ingrediant6">Zutat</label>
-                <input type="text" name="ingrediant6">
-                <label for="ingrediant7">Zutat</label>
-                <input type="text" name="ingrediant7">
-                <label for="ingrediant8">Zutat</label>
-                <input type="text" name="ingrediant8">
-                <label for="ingrediant9">Zutat</label>
-                <input type="text" name="ingrediant9">
-                <label for="ingrediant10">Zutat</label>
-                <input type="text" name="ingrediant10">
+                <label for="ingradiant3">Zutat</label>
+                <input type="text" name="ingradiant3">
+                <label for="ingradiant4">Zutat</label>
+                <input type="text" name="ingradiant4">
+                <label for="ingradiant5">Zutat</label>
+                <input type="text" name="ingradiant5">
+                <label for="ingradiant6">Zutat</label>
+                <input type="text" name="ingradiant6">
+                <label for="ingradiant7">Zutat</label>
+                <input type="text" name="ingradiant7">
+                <label for="ingradiant8">Zutat</label>
+                <input type="text" name="ingradiant8">
+                <label for="ingradiant9">Zutat</label>
+                <input type="text" name="ingradiant9">
+                <label for="ingradiant10">Zutat</label>
+                <input type="text" name="ingradiant10">
                 <label for="instruction">Zubereitung</label>
-                <input type="message" name="instruction">
-                <button type="button" id="createRecipe">speichern</button>
+                <textarea name="instruction" id="instruction" cols="60" rows="10"></textarea>    
             </form>
-            
+            <button type="button" id="saveRecipe">speichern</button>
+        </div>
+
+        <div id="myRecipelist">
+            <div id="singleRecipe">
+
+            </div>
         </div>
     </div>
 </body>

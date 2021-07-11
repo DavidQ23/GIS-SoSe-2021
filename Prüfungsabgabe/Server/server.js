@@ -49,7 +49,22 @@ var Rezepte;
                 let mongoResponse: string = await favourRecipe(mongoURL, favouredRecipe);
                 _response.write(mongoResponse);
             } */
+            else if (url.pathname == "/saveRecipe") {
+                let recipe = JSON.parse(jsonString);
+                let mongoResponse = await saveRecipe(mongoURL, recipe);
+                _response.write(mongoResponse);
+            }
             _response.end();
+        }
+        async function saveRecipe(_url, _recipe) {
+            let options = { useNewUrlParser: true, useUnifiedTopology: true };
+            let mongoClient = new Mongo.MongoClient(_url, options);
+            await mongoClient.connect();
+            let recipeList = mongoClient.db("Recipesite").collection("Recipes");
+            console.log("Database connected", recipeList != undefined);
+            recipeList.insertOne(_recipe);
+            let serverResponse = "Rezept wurde erstellt.";
+            return serverResponse;
         }
         async function loginUser(_url, _user) {
             let options = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -80,6 +95,11 @@ var Rezepte;
             return response;
         }
         /* async function favourRecipe(_url: string, _recipe: Recipe): Promise<string> {
+            let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+            let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+            await mongoClient.connect();
+            let recipeList: Mongo.Collection = mongoClient.db("Recipesite").collection("Recipes");
+            console.log("Database connected", recipeList != undefined);
 
         } */
         async function registrateUser(_url, _user) {
