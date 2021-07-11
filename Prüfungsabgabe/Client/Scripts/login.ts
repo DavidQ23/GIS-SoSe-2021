@@ -4,8 +4,8 @@ namespace Rezepte {
     registrationButton.addEventListener("click", registration);
 
     async function registration(): Promise<void> {
-        let formData: FormData = new FormData(document.forms[0]);                   // Auslesen der eingebenen Daten des ersten Formulars im Dokument 
-        let url: string = "https://davidqgissose2021.herokuapp.com/registration";                                                       //URL des Formulars
+        let formData: FormData = new FormData(document.forms[0]);                   //Auslesen der eingebenen Daten des ersten Formulars im Dokument 
+        let url: string = "https://davidqgissose2021.herokuapp.com/registration";   //URL des Formulars
         let query: URLSearchParams = new URLSearchParams(<any>formData);            
         url = url + "?" + query.toString();                                         //Daten des Formulars als query
         let response: Response = await fetch(url);                                  //auf Serverantwort warten

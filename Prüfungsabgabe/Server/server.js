@@ -65,7 +65,7 @@ var Rezepte;
                 return serverResponse;
             }
         }
-        async function searchUser(_User, _user) {
+        function searchUser(_User, _user) {
             let response;
             for (let i = 0; i < _User.length; i++) {
                 if (_User[i].username == _user.username) {

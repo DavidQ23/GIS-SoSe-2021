@@ -5,7 +5,7 @@ var Rezepte;
     let registrationButton = document.getElementById("registrationButton");
     registrationButton.addEventListener("click", registration);
     async function registration() {
-        let formData = new FormData(document.forms[0]); // Auslesen der eingebenen Daten des ersten Formulars im Dokument 
+        let formData = new FormData(document.forms[0]); //Auslesen der eingebenen Daten des ersten Formulars im Dokument 
         let url = "https://davidqgissose2021.herokuapp.com/registration"; //URL des Formulars
         let query = new URLSearchParams(formData);
         url = url + "?" + query.toString(); //Daten des Formulars als query

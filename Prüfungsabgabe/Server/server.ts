@@ -87,6 +87,7 @@ export namespace Rezepte {
                 if (serverResponse == "Name existiert bereits! Bitte einen neuen Namen verwenden.") {
                     return serverResponse;
                 }
+                
                 userlist.insertOne(_user);
                 return serverResponse;
             }
@@ -97,7 +98,7 @@ export namespace Rezepte {
 
         }
 
-        async function searchUser(_User: User[], _user: User): Promise<string> {
+        function searchUser(_User: User[], _user: User): string {
             let response: string;
             for (let i: number = 0; i < _User.length; i++) {
                 if (_User[i].username == _user.username) {
