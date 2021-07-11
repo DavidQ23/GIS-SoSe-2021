@@ -6,11 +6,10 @@ var Rezepte;
     let saveButton = document.getElementById("saveRecipe");
     saveButton.addEventListener("click", saveRecipe);
     async function saveRecipe() {
-        let formData = new FormData(document.forms[0]);
         let url = "https://davidqgissose2021.herokuapp.com/saveRecipe";
-        let query = new URLSearchParams(formData);
         let loggedUser = localStorage.getItem("username");
-        url = url + "?" + query.toString() + "&author=" + loggedUser;
+        url = url + "?author=" + loggedUser;
+        console.log(url);
         let response = await fetch(url);
         let answer = await response.text();
         console.log(answer);

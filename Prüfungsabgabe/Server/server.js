@@ -130,8 +130,7 @@ var Rezepte;
             await mongoClient.connect();
             let favList = mongoClient.db("Recipesite").collection("favList");
             console.log("Database connected", favList != undefined);
-            let selectedRecipe = _recipe;
-            favList.insertOne(selectedRecipe);
+            favList.insertOne(_recipe);
             let serverresponse = "Erfolgreich hinzugefügt!";
             return serverresponse;
         }

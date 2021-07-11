@@ -89,13 +89,14 @@ var Rezepte;
                 spaceforfavouriteButton.appendChild(addfavouriteButton);
                 allRecipes.appendChild(spaceforfavouriteButton);
                 addfavouriteButton.addEventListener("click", addFavourite);
-            }
-            async function addFavourite() {
-                let url = "https://davidqgissose2021.herokuapp.com/addfavourite";
-                console.log(url);
-                let response = await fetch(url);
-                let answer = await response.text();
-                console.log(answer);
+                async function addFavourite() {
+                    let url = "https://davidqgissose2021.herokuapp.com/addfavourite";
+                    console.log(url);
+                    url = url + "?" + "title=" + everyRecipe[i];
+                    let response = await fetch(url);
+                    let answer = await response.text();
+                    console.log(answer);
+                }
             }
         };
     }

@@ -18,7 +18,6 @@ export namespace Rezepte {
         ingradiant9: string;
         ingradiant10: string;
         instruction: string;
-
     }
 
     export interface User {
@@ -175,9 +174,8 @@ export namespace Rezepte {
             await mongoClient.connect();
             let favList: Mongo.Collection = mongoClient.db("Recipesite").collection("favList");
             console.log("Database connected", favList != undefined);
-        
-            let selectedRecipe: Recipe = _recipe;
-            favList.insertOne(selectedRecipe);
+    
+            favList.insertOne(_recipe);
             let serverresponse: string = "Erfolgreich hinzugefügt!";
             return serverresponse;
             

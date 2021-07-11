@@ -126,17 +126,19 @@ namespace Rezepte {
                 spaceforfavouriteButton.appendChild(addfavouriteButton);
                 allRecipes.appendChild(spaceforfavouriteButton);
                 addfavouriteButton.addEventListener("click", addFavourite);
-            }
-
-            async function addFavourite(): Promise<void> {
+                
+                async function addFavourite(): Promise<void> {
                 let url: string = "https://davidqgissose2021.herokuapp.com/addfavourite";
                 console.log(url);
-
+                url = url + "?" + "title=" + everyRecipe[i];
                 let response: Response = await fetch(url);
                 let answer: string = await response.text();
                 console.log(answer);
             }
 
+            }
+
+            
 
 
         };

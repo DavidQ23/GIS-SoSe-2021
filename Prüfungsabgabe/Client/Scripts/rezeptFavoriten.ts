@@ -114,13 +114,13 @@ namespace Rezepte {
 
                 let author: HTMLParagraphElement = <HTMLParagraphElement>document.createElement("p");
                 author.innerHTML = "Erstellt von: " + everyRecipe[i].author;
-
+                
                 
                 spaceforsinglerecipe.appendChild(spaceforingradiants);
                 spaceforsinglerecipe.appendChild(spaceforinstruction);
                 spaceforsinglerecipe.appendChild(author);
                 recipeList.appendChild(spaceforsinglerecipe);
             }
-        };
+        }
     }
 }
