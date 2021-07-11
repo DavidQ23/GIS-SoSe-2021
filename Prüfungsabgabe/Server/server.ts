@@ -67,12 +67,12 @@ export namespace Rezepte {
                 let mongoResponse: string = await loginUser(mongoURL, user);
                 _response.write(mongoResponse);
             }
-            /*
+
             else if (url.pathname == "/buildsite") {
                 let recipeList: Recipe[] = await loadSite(mongoURL);
                 _response.write(recipeList);
             }
-            else if (url.pathname == "/addfavourite") {
+            /* else if (url.pathname == "/addfavourite") {
                 let favouredRecipe: Recipe = JSON.parse(jsonString);
                 let mongoResponse: string = await favourRecipe(mongoURL, favouredRecipe);
                 _response.write(mongoResponse);
@@ -102,7 +102,7 @@ export namespace Rezepte {
 
         }
 
-        function findUser (_allUser: User[], _user: User): string {
+        function findUser(_allUser: User[], _user: User): string {
             let response: string;
             for (let i: number = 0; i < _allUser.length; i++) {
                 if (_allUser[i].username == _user.username) {
@@ -115,8 +115,8 @@ export namespace Rezepte {
         }
 
         /* async function favourRecipe(_url: string, _recipe: Recipe): Promise<string> {
-            
-        }  */
+
+        } */
 
 
         async function registrateUser(_url: string, _user: User): Promise<string> {
@@ -157,15 +157,15 @@ export namespace Rezepte {
 
 
 
-        /* async function loadSite(_url: string): Promise<Recipe[]> {
+        async function loadSite(_url: string): Promise<Recipe[]> {
             let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
             let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
             await mongoClient.connect();
             let recipeList: Mongo.Collection = mongoClient.db("Recipelist").collection("Recipes");
             console.log("Database connected", recipeList != undefined);
-            let cursor: Mongo.Cursor = recipeList.find();                                                     
-            let result: Recipe[] = await cursor.toArray();                                                
+            let cursor: Mongo.Cursor = recipeList.find();
+            let result: Recipe[] = await cursor.toArray();
             return result;
-        } */
+        }
     }
 }
