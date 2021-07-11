@@ -65,8 +65,8 @@ export namespace Rezepte {
             /* else if (url.pathname == "/login") {
                 let user: User = JSON.parse(jsonString);
                 let mongoResponse: string = await loginUser(mongoURL, user);
-            } */
-            /* else if (url.pathname == "/buildsite") {
+            }
+            else if (url.pathname == "/buildsite") {
                 let recipeList: Recipe[] = await loadSite(mongoURL);
                 _response.write(recipeList);
             }
@@ -74,14 +74,15 @@ export namespace Rezepte {
                 let favouredRecipe: Recipe = JSON.parse(jsonString);
                 let mongoResponse: string = await favourRecipe(mongoURL, favouredRecipe);
                 _response.write(mongoResponse);
-            }
+            } */
             _response.end();
 
         }
 
-        async function favourRecipe(_url: string, _recipe: Recipe): Promise<string> {*/
+        /* async function favourRecipe(_url: string, _recipe: Recipe): Promise<string> {
             
-        } 
+        }  */
+        
 
         async function registrateUser(_url: string, _user: User): Promise<string> {
             let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };

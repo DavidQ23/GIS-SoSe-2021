@@ -38,8 +38,8 @@ var Rezepte;
             /* else if (url.pathname == "/login") {
                 let user: User = JSON.parse(jsonString);
                 let mongoResponse: string = await loginUser(mongoURL, user);
-            } */
-            /* else if (url.pathname == "/buildsite") {
+            }
+            else if (url.pathname == "/buildsite") {
                 let recipeList: Recipe[] = await loadSite(mongoURL);
                 _response.write(recipeList);
             }
@@ -47,13 +47,12 @@ var Rezepte;
                 let favouredRecipe: Recipe = JSON.parse(jsonString);
                 let mongoResponse: string = await favourRecipe(mongoURL, favouredRecipe);
                 _response.write(mongoResponse);
-            }
+            } */
             _response.end();
-
         }
-
-        async function favourRecipe(_url: string, _recipe: Recipe): Promise<string> {*/
-        }
+        /* async function favourRecipe(_url: string, _recipe: Recipe): Promise<string> {
+            
+        }  */
         async function registrateUser(_url, _user) {
             let options = { useNewUrlParser: true, useUnifiedTopology: true };
             let mongoClient = new Mongo.MongoClient(_url, options);
