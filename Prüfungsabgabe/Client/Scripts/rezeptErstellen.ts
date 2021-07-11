@@ -131,11 +131,18 @@ namespace Rezepte {
                 let author: HTMLParagraphElement = <HTMLParagraphElement>document.createElement("p");
                 author.innerHTML = "Erstellt von: " + everyRecipe[i].author;
 
+                let updateButton: HTMLButtonElement = <HTMLButtonElement>document.createElement("button");
+                updateButton.innerHTML = "Rezept bearbeiten";
+                updateButton.classList.add("updateButton");
+
                 
                 spaceforsingleRecipe.appendChild(spaceforingradiants);
                 spaceforsingleRecipe.appendChild(spaceforinstruction);
                 spaceforsingleRecipe.appendChild(author);
+                spaceforsingleRecipe.appendChild(updateButton);
                 allRecipe.appendChild(spaceforsingleRecipe);
+
+
 
             }
 

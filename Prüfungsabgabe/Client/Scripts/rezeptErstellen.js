@@ -96,9 +96,13 @@ var Rezepte;
                 spaceforinstruction.appendChild(instruction);
                 let author = document.createElement("p");
                 author.innerHTML = "Erstellt von: " + everyRecipe[i].author;
+                let updateButton = document.createElement("button");
+                updateButton.innerHTML = "Rezept bearbeiten";
+                updateButton.classList.add("updateButton");
                 spaceforsingleRecipe.appendChild(spaceforingradiants);
                 spaceforsingleRecipe.appendChild(spaceforinstruction);
                 spaceforsingleRecipe.appendChild(author);
+                spaceforsingleRecipe.appendChild(updateButton);
                 allRecipe.appendChild(spaceforsingleRecipe);
             }
         };
