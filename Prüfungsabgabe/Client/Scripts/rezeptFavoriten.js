@@ -24,52 +24,52 @@ var Rezepte;
                 ingradiantheader.innerHTML = "Zutaten:";
                 spaceforingradiants.appendChild(ingradiantheader);
                 let ingradiant1 = document.createElement("p");
-                if (everyRecipe[i].ingradiant1 != undefined) {
+                if (everyRecipe[i].ingradiant1 != "undefined") {
                     ingradiant1.innerHTML = everyRecipe[i].ingradiant1;
                     spaceforingradiants.appendChild(ingradiant1);
                 }
                 let ingradiant2 = document.createElement("p");
-                if (everyRecipe[i].ingradiant2 != undefined) {
+                if (everyRecipe[i].ingradiant2 != "undefined") {
                     ingradiant2.innerHTML = everyRecipe[i].ingradiant2;
                     spaceforingradiants.appendChild(ingradiant2);
                 }
                 let ingradiant3 = document.createElement("p");
-                if (everyRecipe[i].ingradiant3 != undefined) {
+                if (everyRecipe[i].ingradiant3 != "undefined") {
                     ingradiant3.innerHTML = everyRecipe[i].ingradiant3;
                     spaceforingradiants.appendChild(ingradiant3);
                 }
                 let ingradiant4 = document.createElement("p");
-                if (everyRecipe[i].ingradiant4 != undefined) {
+                if (everyRecipe[i].ingradiant4 != "undefined") {
                     ingradiant4.innerHTML = everyRecipe[i].ingradiant4;
                     spaceforingradiants.appendChild(ingradiant4);
                 }
                 let ingradiant5 = document.createElement("p");
-                if (everyRecipe[i].ingradiant5 != undefined) {
+                if (everyRecipe[i].ingradiant5 != "undefined") {
                     ingradiant5.innerHTML = everyRecipe[i].ingradiant5;
                     spaceforingradiants.appendChild(ingradiant5);
                 }
                 let ingradiant6 = document.createElement("p");
-                if (everyRecipe[i].ingradiant6 != undefined) {
+                if (everyRecipe[i].ingradiant6 != "undefined") {
                     ingradiant6.innerHTML = everyRecipe[i].ingradiant6;
                     spaceforingradiants.appendChild(ingradiant6);
                 }
                 let ingradiant7 = document.createElement("p");
-                if (everyRecipe[i].ingradiant7 != undefined) {
+                if (everyRecipe[i].ingradiant7 != "undefined") {
                     ingradiant7.innerHTML = everyRecipe[i].ingradiant7;
                     spaceforingradiants.appendChild(ingradiant7);
                 }
                 let ingradiant8 = document.createElement("p");
-                if (everyRecipe[i].ingradiant8 != undefined) {
+                if (everyRecipe[i].ingradiant8 != "undefined") {
                     ingradiant8.innerHTML = everyRecipe[i].ingradiant8;
                     spaceforingradiants.appendChild(ingradiant8);
                 }
                 let ingradiant9 = document.createElement("p");
-                if (everyRecipe[i].ingradiant9 != undefined) {
+                if (everyRecipe[i].ingradiant9 != "undefined") {
                     ingradiant9.innerHTML = everyRecipe[i].ingradiant9;
                     spaceforingradiants.appendChild(ingradiant9);
                 }
                 let ingradiant10 = document.createElement("p");
-                if (everyRecipe[i].ingradiant10 != undefined) {
+                if (everyRecipe[i].ingradiant10 != "undefined") {
                     ingradiant10.innerHTML = everyRecipe[i].ingradiant10;
                     spaceforingradiants.appendChild(ingradiant10);
                 }

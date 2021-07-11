@@ -90,9 +90,10 @@ var Rezepte;
                 allRecipes.appendChild(spaceforfavouriteButton);
                 addfavouriteButton.addEventListener("click", addFavourite);
                 async function addFavourite() {
+                    let loggedUser = localStorage.getItem("username");
                     let url = "https://davidqgissose2021.herokuapp.com/addfavourite";
+                    url = url + "?" + "title=" + everyRecipe[i].title + "&ingradiant1=" + everyRecipe[i].ingradiant1 + "&ingradiant2=" + everyRecipe[i].ingradiant2 + "&ingradiant3=" + everyRecipe[i].ingradiant3 + "&ingradiant4=" + everyRecipe[i].ingradiant4 + "&ingradiant5=" + everyRecipe[i].ingradiant5 + "&ingradiant6=" + everyRecipe[i].ingradiant6 + "&ingradiant7=" + everyRecipe[i].ingradiant7 + "&ingradiant8=" + everyRecipe[i].ingradiant8 + "&ingradiant9=" + everyRecipe[i].ingradiant9 + "&ingradiant10=" + everyRecipe[i].ingradiant10 + "&instruction=" + everyRecipe[i].instruction + "&author=" + everyRecipe[i].author + "&loggedUser=" + loggedUser;
                     console.log(url);
-                    url = url + "?" + "title=" + everyRecipe[i];
                     let response = await fetch(url);
                     let answer = await response.text();
                     console.log(answer);

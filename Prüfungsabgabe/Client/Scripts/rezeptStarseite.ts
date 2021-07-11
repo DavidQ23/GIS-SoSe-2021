@@ -14,6 +14,7 @@ namespace Rezepte {
         ingradiant10: string;
         instruction: string;
         author: string;
+        loggedUser: string;
     }
 
     let allRecipes: HTMLDivElement = <HTMLDivElement>document.getElementById("recipelist");
@@ -115,7 +116,7 @@ namespace Rezepte {
                 let author: HTMLParagraphElement = <HTMLParagraphElement>document.createElement("p");
                 author.innerHTML = "Erstellt von: " + everyRecipe[i].author;
 
-                
+
                 spaceforsinglerecipe.appendChild(spaceforingradiants);
                 spaceforsinglerecipe.appendChild(spaceforinstruction);
                 spaceforsinglerecipe.appendChild(author);
@@ -126,19 +127,20 @@ namespace Rezepte {
                 spaceforfavouriteButton.appendChild(addfavouriteButton);
                 allRecipes.appendChild(spaceforfavouriteButton);
                 addfavouriteButton.addEventListener("click", addFavourite);
-                
+
                 async function addFavourite(): Promise<void> {
-                let url: string = "https://davidqgissose2021.herokuapp.com/addfavourite";
-                console.log(url);
-                url = url + "?" + "title=" + everyRecipe[i];
-                let response: Response = await fetch(url);
-                let answer: string = await response.text();
-                console.log(answer);
-            }
+                    let loggedUser: string = localStorage.getItem("username");
+                    let url: string = "https://davidqgissose2021.herokuapp.com/addfavourite";
+                    url = url + "?" + "title=" + everyRecipe[i].title + "&ingradiant1=" + everyRecipe[i].ingradiant1 + "&ingradiant2=" + everyRecipe[i].ingradiant2 + "&ingradiant3=" + everyRecipe[i].ingradiant3 + "&ingradiant4=" + everyRecipe[i].ingradiant4 + "&ingradiant5=" + everyRecipe[i].ingradiant5 + "&ingradiant6=" + everyRecipe[i].ingradiant6 + "&ingradiant7=" + everyRecipe[i].ingradiant7 + "&ingradiant8=" + everyRecipe[i].ingradiant8 + "&ingradiant9=" + everyRecipe[i].ingradiant9 + "&ingradiant10=" + everyRecipe[i].ingradiant10 + "&instruction=" + everyRecipe[i].instruction + "&author=" + everyRecipe[i].author + "&loggedUser=" + loggedUser;
+                    console.log(url);
+                    let response: Response = await fetch(url);
+                    let answer: string = await response.text();
+                    console.log(answer);
+                }
 
             }
 
-            
+
 
 
         };
