@@ -62,10 +62,12 @@ export namespace Rezepte {
                 let mongoResponse: string = await registrateUser(mongoURL, user);
                 _response.write(mongoResponse);
             }
-            /* else if (url.pathname == "/login") {
+            else if (url.pathname == "/login") {
                 let user: User = JSON.parse(jsonString);
                 let mongoResponse: string = await loginUser(mongoURL, user);
+                _response.write(mongoResponse);
             }
+            /*
             else if (url.pathname == "/buildsite") {
                 let recipeList: Recipe[] = await loadSite(mongoURL);
                 _response.write(recipeList);
@@ -79,10 +81,43 @@ export namespace Rezepte {
 
         }
 
+        async function loginUser(_url: string, _user: User): Promise<string> {
+            let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+            let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+            await mongoClient.connect();
+
+            userlist = mongoClient.db("Recipesite").collection("User");
+            console.log("Database connected", userlist != undefined);
+
+            if (_user.username != "" && _user.password != "") {
+                let cursor: Mongo.Cursor = userlist.find();
+                let allUser: User[] = await cursor.toArray();
+                let serverresponse: string = await findUser(allUser, _user);
+                return serverresponse;
+            }
+            else {
+                let response: string = "Bitte Felder vollständig ausfüllen!";
+                return response;
+            }
+
+        }
+
+        function findUser (_allUser: User[], _user: User): string {
+            let response: string;
+            for (let i: number = 0; i < _allUser.length; i++) {
+                if (_allUser[i].username == _user.username) {
+                    response = _user.username;
+                    return response;
+                }
+            }
+            response = "Nutzername wurde nicht gefunden.";
+            return response;
+        }
+
         /* async function favourRecipe(_url: string, _recipe: Recipe): Promise<string> {
             
         }  */
-        
+
 
         async function registrateUser(_url: string, _user: User): Promise<string> {
             let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -120,9 +155,7 @@ export namespace Rezepte {
             return response;
         }
 
-        /* async function loginUser(params:type) {
-            
-        } */
+
 
         /* async function loadSite(_url: string): Promise<Recipe[]> {
             let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
