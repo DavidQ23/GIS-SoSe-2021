@@ -1,6 +1,7 @@
 namespace Rezepte {
     let registrationFeedback: HTMLDivElement = <HTMLDivElement>document.getElementById("registrationFeedback");
     let registrationButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("registrationButton");
+    let registrationForm: HTMLFormElement = <HTMLFormElement>document.getElementById("registrationForm");
     registrationButton.addEventListener("click", registration);
 
     async function registration(): Promise<void> {
@@ -11,9 +12,20 @@ namespace Rezepte {
         let response: Response = await fetch(url);                                  //auf Serverantwort warten
         let answer: string = await response.text(); 
         console.log(answer);
+        
         let paragraphForFeedback: HTMLParagraphElement = <HTMLParagraphElement>document.createElement("p");
         paragraphForFeedback.innerHTML = answer;
         registrationFeedback.appendChild(paragraphForFeedback);
+
+        if (answer == "Name existiert bereits! Bitte einen neuen Namen verwenden.") {
+            registrationForm.reset();
+        }
+        else if (answer == "Bitte alle Felder ausfüllen!") {
+            registrationForm.reset();
+        }
+        else {
+            location.href = "rezeptStartseite.html";
+        }
     }
 
     /* async function login(): Promise<void> {

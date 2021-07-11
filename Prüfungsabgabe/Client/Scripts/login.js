@@ -3,6 +3,7 @@ var Rezepte;
 (function (Rezepte) {
     let registrationFeedback = document.getElementById("registrationFeedback");
     let registrationButton = document.getElementById("registrationButton");
+    let registrationForm = document.getElementById("registrationForm");
     registrationButton.addEventListener("click", registration);
     async function registration() {
         let formData = new FormData(document.forms[0]); //Auslesen der eingebenen Daten des ersten Formulars im Dokument 
@@ -15,6 +16,15 @@ var Rezepte;
         let paragraphForFeedback = document.createElement("p");
         paragraphForFeedback.innerHTML = answer;
         registrationFeedback.appendChild(paragraphForFeedback);
+        if (answer == "Name existiert bereits! Bitte einen neuen Namen verwenden.") {
+            registrationForm.reset();
+        }
+        else if (answer == "Bitte alle Felder ausfüllen!") {
+            registrationForm.reset();
+        }
+        else {
+            location.href = "rezeptStartseite.html";
+        }
     }
     /* async function login(): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);
