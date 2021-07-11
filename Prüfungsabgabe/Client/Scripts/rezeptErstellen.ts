@@ -38,7 +38,7 @@ namespace Rezepte {
         window.onload = async function buildSite(): Promise<void> {
             let loggedUser: string = localStorage.getItem("username");
             let url: string = "https://davidqgissose2021.herokuapp.com/myRecipeSite";
-            url = url + "?author=" + loggedUser;
+            url = url + "?author=" + loggedUser + "&loggedUser=" + loggedUser;
             console.log(url);
             
             let response: Response = await fetch(url);

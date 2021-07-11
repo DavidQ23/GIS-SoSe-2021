@@ -14,6 +14,7 @@ namespace Rezepte {
         ingradiant10: string;
         instruction: string;
         author: string;
+        loggedUser: string;
     }
 
     let recipeList: HTMLDivElement = <HTMLDivElement>document.getElementById("savedRecipelist");
@@ -23,7 +24,7 @@ namespace Rezepte {
             
             let loggedUser: string = localStorage.getItem("username");
             let url: string = "https://davidqgissose2021.herokuapp.com/loadFavourites";
-            url = url + "?author=" + loggedUser;
+            url = url + "?loggedUser=" + loggedUser;
             console.log(url);
 
             let response: Response = await fetch(url);
