@@ -96,14 +96,23 @@ var Rezepte;
                 spaceforinstruction.appendChild(instruction);
                 let author = document.createElement("p");
                 author.innerHTML = "Erstellt von: " + everyRecipe[i].author;
-                let updateButton = document.createElement("button");
-                updateButton.innerHTML = "Rezept bearbeiten";
-                updateButton.classList.add("updateButton");
+                let deleteButton = document.createElement("button");
+                deleteButton.innerHTML = "Rezept bearbeiten";
+                deleteButton.classList.add("deleteButton");
                 spaceforsingleRecipe.appendChild(spaceforingradiants);
                 spaceforsingleRecipe.appendChild(spaceforinstruction);
                 spaceforsingleRecipe.appendChild(author);
-                spaceforsingleRecipe.appendChild(updateButton);
+                spaceforsingleRecipe.appendChild(deleteButton);
                 allRecipe.appendChild(spaceforsingleRecipe);
+                deleteButton.addEventListener("click", deleteRecipe);
+                async function deleteRecipe() {
+                    let loggedUser = localStorage.getItem("username");
+                    let url = "https://davidqgissose2021.herokuapp.com/deleteRecipe";
+                    url = url + "?" + "title=" + everyRecipe[i].title + "&ingradiant1=" + everyRecipe[i].ingradiant1 + "&ingradiant2=" + everyRecipe[i].ingradiant2 + "&ingradiant3=" + everyRecipe[i].ingradiant3 + "&ingradiant4=" + everyRecipe[i].ingradiant4 + "&ingradiant5=" + everyRecipe[i].ingradiant5 + "&ingradiant6=" + everyRecipe[i].ingradiant6 + "&ingradiant7=" + everyRecipe[i].ingradiant7 + "&ingradiant8=" + everyRecipe[i].ingradiant8 + "&ingradiant9=" + everyRecipe[i].ingradiant9 + "&ingradiant10=" + everyRecipe[i].ingradiant10 + "&instruction=" + everyRecipe[i].instruction + "&author=" + everyRecipe[i].author + "&loggedUser=" + loggedUser;
+                    let response = await fetch(url);
+                    let answer = await response.text();
+                    console.log(answer);
+                }
             }
         };
     }

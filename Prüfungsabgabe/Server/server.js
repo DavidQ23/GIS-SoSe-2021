@@ -80,7 +80,17 @@ var Rezepte;
                 let recipeList = await loadmyRecipesite(recipe);
                 _response.write(JSON.stringify(recipeList));
             }
+            else if (url.pathname == "/deleteRecipe") {
+                let recipe = JSON.parse(jsonString);
+                let recipeList = await deleteRecipe(recipe);
+                _response.write(recipeList);
+            }
             _response.end();
+        }
+        function deleteRecipe(_recipe) {
+            recipeList.deleteOne(_recipe);
+            let serverResponse = "Rezept wurde erfolgreich gelöscht";
+            return serverResponse;
         }
         function deleteFav(_recipe) {
             favList.deleteOne(_recipe);

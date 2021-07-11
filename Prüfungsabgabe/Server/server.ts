@@ -113,8 +113,19 @@ export namespace Rezepte {
                 let recipeList: Recipe[] = await loadmyRecipesite(recipe);
                 _response.write(JSON.stringify(recipeList));
             }
+            else if (url.pathname == "/deleteRecipe") {
+                let recipe: Recipe = JSON.parse(jsonString);
+                let recipeList: string = await deleteRecipe(recipe);
+                _response.write(recipeList);
+            }
             _response.end();
 
+        }
+
+        function deleteRecipe(_recipe: Recipe): string {
+            recipeList.deleteOne(_recipe);
+            let serverResponse: string = "Rezept wurde erfolgreich gelöscht";
+            return serverResponse;
         }
 
         function deleteFav(_recipe: Recipe): string {
