@@ -47,6 +47,12 @@ form label {
      background-color: rgba(12, 182, 12, 0.692);
 }
 
+#registrationFeedback {
+    border: 0px solid black;
+    margin-top: 10px;
+    color: rgb(238, 255, 0);
+}
+
 button {
     margin-top: 4%;
 }

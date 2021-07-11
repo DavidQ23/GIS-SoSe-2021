@@ -33,8 +33,11 @@ namespace Rezepte {
 
             for (let i: number = 0; i < everyRecipe.length; i++) {
                 let spaceforsinglerecipe: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+                spaceforsinglerecipe.classList.add("singlerecipe");
                 let spaceforingradiants: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+                spaceforingradiants.classList.add("spaceforingradiants");
                 let spaceforinstruction: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+                spaceforinstruction.classList.add("spaceforinstruction");
                 let spaceforfavouriteButton: HTMLDivElement = <HTMLDivElement>document.createElement("div");
 
                 let title: HTMLParagraphElement = <HTMLParagraphElement>document.createElement("p");
@@ -120,14 +123,16 @@ namespace Rezepte {
                 spaceforsinglerecipe.appendChild(spaceforingradiants);
                 spaceforsinglerecipe.appendChild(spaceforinstruction);
                 spaceforsinglerecipe.appendChild(author);
-                allRecipes.appendChild(spaceforsinglerecipe);
+
 
                 let addfavouriteButton: HTMLButtonElement = <HTMLButtonElement>document.createElement("button");
                 addfavouriteButton.innerHTML = "Favorisieren";
+                addfavouriteButton.classList.add("saveButton");
                 spaceforfavouriteButton.appendChild(addfavouriteButton);
-                allRecipes.appendChild(spaceforfavouriteButton);
+                spaceforsinglerecipe.appendChild(spaceforfavouriteButton);
                 addfavouriteButton.addEventListener("click", addFavourite);
-
+                allRecipes.appendChild(spaceforsinglerecipe);
+               
                 async function addFavourite(): Promise<void> {
                     let loggedUser: string = localStorage.getItem("username");
                     let url: string = "https://davidqgissose2021.herokuapp.com/addfavourite";

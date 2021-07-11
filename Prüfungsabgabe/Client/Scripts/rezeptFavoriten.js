@@ -14,8 +14,11 @@ var Rezepte;
             let everyRecipe = JSON.parse(answer);
             for (let i = 0; i < everyRecipe.length; i++) {
                 let spaceforsinglerecipe = document.createElement("div");
+                spaceforsinglerecipe.classList.add("singlerecipe");
                 let spaceforingradiants = document.createElement("div");
+                spaceforingradiants.classList.add("spaceforingradiants");
                 let spaceforinstruction = document.createElement("div");
+                spaceforinstruction.classList.add("spaceforinstruction");
                 let title = document.createElement("p");
                 title.innerHTML = everyRecipe[i].title;
                 title.classList.add("headline");

@@ -18,6 +18,7 @@ namespace Rezepte {
 
     let newRecipeForm: HTMLFormElement = <HTMLFormElement>document.getElementById("newRecipeForm");
     let allRecipe: HTMLDivElement = <HTMLDivElement>document.getElementById("myRecipelist");
+    allRecipe.classList.add("allRecipe");
     let saveButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("saveRecipe");
     saveButton.addEventListener("click", saveRecipe);
 
@@ -51,8 +52,11 @@ namespace Rezepte {
 
             for (let i: number = 0; i < everyRecipe.length; i++) {
                 let spaceforsingleRecipe: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+                spaceforsingleRecipe.classList.add("singlerecipe");
                 let spaceforingradiants: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+                spaceforingradiants.classList.add("spaceforingradiants");
                 let spaceforinstruction: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+                spaceforinstruction.classList.add("spaceforinstruction");
 
                 let title: HTMLParagraphElement = <HTMLParagraphElement>document.createElement("p");
                 title.innerHTML = everyRecipe[i].title;

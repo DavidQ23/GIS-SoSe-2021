@@ -1,29 +1,45 @@
 .container {
-    align-items: center;
+    align-items: left;
     display: flex;
+
 }
 
-.recipe {
-    align-items:center;
-    background-color: rgb(139, 167, 243);
-    padding: 5px 10px;
-    margin-bottom: 20px;
-    margin-top: 5px;
-    width: 70%;
+#recipelist {
+    display: flex;
+    flex-direction: column;
+
 }
 
-.instruction {
-    padding: 0px 3px 3px 3px;
+.singlerecipe {
+    margin-left: 20%;
+    margin-bottom: 2%;
+    justify-content: center;
+    background-color: rgb(26, 177, 26);
+    width: 40%;
 }
 
-h2 {
+.headline {
     text-align: center;
+    font-weight: bold;
+    font-size: 200%;
+    color: rgb(155, 0, 0);
 }
 
-.recipe button {
-    padding: 5px;
+
+.spaceforingradiants,.spaceforinstruction, .spaceforinstruction + p {
+    margin-top: 2%;
+    padding: 4% 10%;
+    border-top: 1px solid black;
 }
 
-p {
-    text-align: justify;
+.saveButton {
+    width: 100%;
+    padding: 2%;
+    background-color: rgb(202, 49, 49);
 }
+
+.saveButton:hover {
+    opacity: 70%;
+    color: rgb(7, 6, 44);
+}
+

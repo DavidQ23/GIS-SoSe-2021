@@ -12,8 +12,11 @@ var Rezepte;
             let everyRecipe = JSON.parse(answer);
             for (let i = 0; i < everyRecipe.length; i++) {
                 let spaceforsinglerecipe = document.createElement("div");
+                spaceforsinglerecipe.classList.add("singlerecipe");
                 let spaceforingradiants = document.createElement("div");
+                spaceforingradiants.classList.add("spaceforingradiants");
                 let spaceforinstruction = document.createElement("div");
+                spaceforinstruction.classList.add("spaceforinstruction");
                 let spaceforfavouriteButton = document.createElement("div");
                 let title = document.createElement("p");
                 title.innerHTML = everyRecipe[i].title;
@@ -83,12 +86,13 @@ var Rezepte;
                 spaceforsinglerecipe.appendChild(spaceforingradiants);
                 spaceforsinglerecipe.appendChild(spaceforinstruction);
                 spaceforsinglerecipe.appendChild(author);
-                allRecipes.appendChild(spaceforsinglerecipe);
                 let addfavouriteButton = document.createElement("button");
                 addfavouriteButton.innerHTML = "Favorisieren";
+                addfavouriteButton.classList.add("saveButton");
                 spaceforfavouriteButton.appendChild(addfavouriteButton);
-                allRecipes.appendChild(spaceforfavouriteButton);
+                spaceforsinglerecipe.appendChild(spaceforfavouriteButton);
                 addfavouriteButton.addEventListener("click", addFavourite);
+                allRecipes.appendChild(spaceforsinglerecipe);
                 async function addFavourite() {
                     let loggedUser = localStorage.getItem("username");
                     let url = "https://davidqgissose2021.herokuapp.com/addfavourite";

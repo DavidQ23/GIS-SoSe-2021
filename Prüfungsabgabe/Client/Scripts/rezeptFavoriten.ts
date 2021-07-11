@@ -35,8 +35,11 @@ namespace Rezepte {
 
             for (let i: number = 0; i < everyRecipe.length; i++) {
                 let spaceforsinglerecipe: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+                spaceforsinglerecipe.classList.add("singlerecipe");
                 let spaceforingradiants: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+                spaceforingradiants.classList.add("spaceforingradiants");
                 let spaceforinstruction: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+                spaceforinstruction.classList.add("spaceforinstruction");
 
 
                 let title: HTMLParagraphElement = <HTMLParagraphElement>document.createElement("p");
