@@ -6,16 +6,16 @@ export namespace Rezepte {
 
     export interface Recipe {
         title: string;
-        ingrediant1: string;
-        ingrediant2: string;
-        ingrediant3: string;
-        ingrediant4: string;
-        ingrediant5: string;
-        ingrediant6: string;
-        ingrediant7: string;
-        ingrediant8: string;
-        ingrediant9: string;
-        ingrediant10: string;
+        ingradiant1: string;
+        ingradiant2: string;
+        ingradiant3: string;
+        ingradiant4: string;
+        ingradiant5: string;
+        ingradiant6: string;
+        ingradiant7: string;
+        ingradiant8: string;
+        ingradiant9: string;
+        ingradiant10: string;
         instruction: string;
     }
 

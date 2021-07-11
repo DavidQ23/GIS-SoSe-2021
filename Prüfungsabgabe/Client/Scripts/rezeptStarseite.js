@@ -20,35 +20,55 @@ var Rezepte;
                 title.classList.add("headline");
                 spaceforsinglerecipe.appendChild(title);
                 let ingradiant1 = document.createElement("p");
-                ingradiant1.innerHTML = everyRecipe[i].ingrediant1;
-                spaceforingradiants.appendChild(ingradiant1);
+                if (everyRecipe[i].ingradiant1 != undefined) {
+                    ingradiant1.innerHTML = everyRecipe[i].ingradiant1;
+                    spaceforingradiants.appendChild(ingradiant1);
+                }
                 let ingradiant2 = document.createElement("p");
-                ingradiant2.innerHTML = everyRecipe[i].ingrediant2;
-                spaceforingradiants.appendChild(ingradiant2);
+                if (everyRecipe[i].ingradiant2 != undefined) {
+                    ingradiant2.innerHTML = everyRecipe[i].ingradiant2;
+                    spaceforingradiants.appendChild(ingradiant2);
+                }
                 let ingradiant3 = document.createElement("p");
-                ingradiant3.innerHTML = everyRecipe[i].ingrediant3;
-                spaceforingradiants.appendChild(ingradiant3);
+                if (everyRecipe[i].ingradiant3 != undefined) {
+                    ingradiant3.innerHTML = everyRecipe[i].ingradiant3;
+                    spaceforingradiants.appendChild(ingradiant3);
+                }
                 let ingradiant4 = document.createElement("p");
-                ingradiant4.innerHTML = everyRecipe[i].ingrediant4;
-                spaceforingradiants.appendChild(ingradiant4);
+                if (everyRecipe[i].ingradiant4 != undefined) {
+                    ingradiant4.innerHTML = everyRecipe[i].ingradiant4;
+                    spaceforingradiants.appendChild(ingradiant4);
+                }
                 let ingradiant5 = document.createElement("p");
-                ingradiant5.innerHTML = everyRecipe[i].ingrediant5;
-                spaceforingradiants.appendChild(ingradiant5);
+                if (everyRecipe[i].ingradiant5 != undefined) {
+                    ingradiant5.innerHTML = everyRecipe[i].ingradiant5;
+                    spaceforingradiants.appendChild(ingradiant5);
+                }
                 let ingradiant6 = document.createElement("p");
-                ingradiant6.innerHTML = everyRecipe[i].ingrediant6;
-                spaceforingradiants.appendChild(ingradiant6);
+                if (everyRecipe[i].ingradiant6 != undefined) {
+                    ingradiant6.innerHTML = everyRecipe[i].ingradiant6;
+                    spaceforingradiants.appendChild(ingradiant6);
+                }
                 let ingradiant7 = document.createElement("p");
-                ingradiant7.innerHTML = everyRecipe[i].ingrediant7;
-                spaceforingradiants.appendChild(ingradiant7);
+                if (everyRecipe[i].ingradiant7 != undefined) {
+                    ingradiant7.innerHTML = everyRecipe[i].ingradiant7;
+                    spaceforingradiants.appendChild(ingradiant7);
+                }
                 let ingradiant8 = document.createElement("p");
-                ingradiant8.innerHTML = everyRecipe[i].ingrediant8;
-                spaceforingradiants.appendChild(ingradiant8);
+                if (everyRecipe[i].ingradiant8 != undefined) {
+                    ingradiant8.innerHTML = everyRecipe[i].ingradiant8;
+                    spaceforingradiants.appendChild(ingradiant8);
+                }
                 let ingradiant9 = document.createElement("p");
-                ingradiant9.innerHTML = everyRecipe[i].ingrediant9;
-                spaceforingradiants.appendChild(ingradiant9);
+                if (everyRecipe[i].ingradiant9 != undefined) {
+                    ingradiant9.innerHTML = everyRecipe[i].ingradiant9;
+                    spaceforingradiants.appendChild(ingradiant9);
+                }
                 let ingradiant10 = document.createElement("p");
-                ingradiant10.innerHTML = everyRecipe[i].ingrediant10;
-                spaceforingradiants.appendChild(ingradiant10);
+                if (everyRecipe[i].ingradiant10 != undefined) {
+                    ingradiant10.innerHTML = everyRecipe[i].ingradiant10;
+                    spaceforingradiants.appendChild(ingradiant10);
+                }
                 let instruction = document.createElement("p");
                 instruction.innerHTML = everyRecipe[i].instruction;
                 spaceforinstruction.appendChild(instruction);
