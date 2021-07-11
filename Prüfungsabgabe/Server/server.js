@@ -54,7 +54,22 @@ var Rezepte;
                 let mongoResponse = await saveRecipe(mongoURL, recipe);
                 _response.write(mongoResponse);
             }
+            else if (url.pathname == "/myRecipeSite") {
+                let recipe = JSON.parse(jsonString);
+                let recipeList = await loadmyRecipesite(mongoURL, recipe);
+                _response.write(JSON.stringify(recipeList));
+            }
             _response.end();
+        }
+        async function loadmyRecipesite(_url, _recipe) {
+            let options = { useNewUrlParser: true, useUnifiedTopology: true };
+            let mongoClient = new Mongo.MongoClient(_url, options);
+            await mongoClient.connect();
+            let recipeList = mongoClient.db("Recipesite").collection("Recipes");
+            console.log("Database connected", recipeList != undefined);
+            let cursor = recipeList.find({ "author": _recipe.author });
+            let result = await cursor.toArray();
+            return result;
         }
         async function saveRecipe(_url, _recipe) {
             let options = { useNewUrlParser: true, useUnifiedTopology: true };

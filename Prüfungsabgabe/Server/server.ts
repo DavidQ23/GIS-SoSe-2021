@@ -83,8 +83,24 @@ export namespace Rezepte {
                 let mongoResponse: string = await saveRecipe(mongoURL, recipe);
                 _response.write(mongoResponse);
             }
+            else if (url.pathname == "/myRecipeSite") {
+                let recipe: Recipe = JSON.parse(jsonString);
+                let recipeList: Recipe[] = await loadmyRecipesite(mongoURL, recipe);
+                _response.write(JSON.stringify(recipeList));
+            }
             _response.end();
 
+        }
+
+        async function loadmyRecipesite(_url: string, _recipe: Recipe): Promise<Recipe[]> {
+            let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+            let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+            await mongoClient.connect();
+            let recipeList: Mongo.Collection = mongoClient.db("Recipesite").collection("Recipes");
+            console.log("Database connected", recipeList != undefined);
+            let cursor: Mongo.Cursor = recipeList.find({"author": _recipe.author});
+            let result: Recipe[] = await cursor.toArray();
+            return result;
         }
 
         async function saveRecipe(_url: string, _recipe: Recipe): Promise<string> {
