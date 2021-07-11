@@ -145,8 +145,8 @@ export namespace Rezepte {
 
         async function loadmyRecipesite(_recipe: Recipe): Promise<Recipe[]> {
             
-            let loggedUser: string = _recipe.author;
-            let cursor: Mongo.Cursor = recipeList.find({ author: loggedUser });
+            let loggedUser: string = _recipe.loggedUser;
+            let cursor: Mongo.Cursor = recipeList.find({ loggedUser: loggedUser });
             let result: Recipe[] = await cursor.toArray();
             return result;
         }

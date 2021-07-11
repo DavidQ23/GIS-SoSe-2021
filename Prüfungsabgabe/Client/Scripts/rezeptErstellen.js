@@ -22,7 +22,7 @@ var Rezepte;
         window.onload = async function buildSite() {
             let loggedUser = localStorage.getItem("username");
             let url = "https://davidqgissose2021.herokuapp.com/myRecipeSite";
-            url = url + "?author=" + loggedUser + "&loggedUser=" + loggedUser;
+            url = url + "?loggedUser=" + loggedUser;
             console.log(url);
             let response = await fetch(url);
             let answer = await response.text();
