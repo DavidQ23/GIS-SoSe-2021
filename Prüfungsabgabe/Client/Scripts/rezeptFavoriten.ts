@@ -1,6 +1,7 @@
 namespace Rezepte {
 
     interface Recipe {
+        author: string;
         title: string;
         ingradiant1: string;
         ingradiant2: string;
@@ -13,7 +14,6 @@ namespace Rezepte {
         ingradiant9: string;
         ingradiant10: string;
         instruction: string;
-        author: string;
         loggedUser: string;
     }
 

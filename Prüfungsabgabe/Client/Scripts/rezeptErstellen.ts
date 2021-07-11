@@ -1,5 +1,6 @@
 namespace Rezepte {
     interface Recipe {
+        author: string;
         title: string;
         ingradiant1: string;
         ingradiant2: string;
@@ -12,7 +13,6 @@ namespace Rezepte {
         ingradiant9: string;
         ingradiant10: string;
         instruction: string;
-        author: string;
         loggedUser: string;
     }
 
@@ -26,14 +26,14 @@ namespace Rezepte {
         let url: string = "https://davidqgissose2021.herokuapp.com/saveRecipe";
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         let loggedUser: string = localStorage.getItem("username");
-        url = url + "?" + query.toString() + "&author=" + loggedUser + "?loggedUser=" + loggedUser;
+        url = url + "?" + query.toString() + "&author=" + loggedUser + "&loggedUser=" + loggedUser;
         console.log(url);
 
         let response: Response = await fetch(url);
         let answer: string = await response.text();
         console.log(answer);
         newRecipeForm.reset();
-        //window.location.reload();
+        window.location.reload();
     }
 
     if (document.querySelector("title").getAttribute("id") == "createRecipe") {
