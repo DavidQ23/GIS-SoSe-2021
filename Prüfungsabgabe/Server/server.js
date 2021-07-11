@@ -65,6 +65,11 @@ var Rezepte;
                 let recipeList = await loadFavSite(recipe);
                 _response.write(JSON.stringify(recipeList));
             }
+            else if (url.pathname == "/deleteFav") {
+                let recipe = JSON.parse(jsonString);
+                let mongoResponse = await deleteFav(recipe);
+                _response.write(mongoResponse);
+            }
             else if (url.pathname == "/saveRecipe") {
                 let recipe = JSON.parse(jsonString);
                 let mongoResponse = await saveRecipe(recipe);
@@ -76,6 +81,11 @@ var Rezepte;
                 _response.write(JSON.stringify(recipeList));
             }
             _response.end();
+        }
+        function deleteFav(_recipe) {
+            favList.deleteOne(_recipe);
+            let serverResponse = "Rezept wurde aus Favoriten entfernt.";
+            return serverResponse;
         }
         async function loadFavSite(_recipe) {
             let loggedUser = _recipe.loggedUser;
@@ -89,7 +99,7 @@ var Rezepte;
             let result = await cursor.toArray();
             return result;
         }
-        async function saveRecipe(_recipe) {
+        function saveRecipe(_recipe) {
             recipeList.insertOne(_recipe);
             let serverResponse = "Rezept wurde erstellt.";
             return serverResponse;

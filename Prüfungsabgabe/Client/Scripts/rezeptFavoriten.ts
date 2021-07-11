@@ -118,11 +118,28 @@ namespace Rezepte {
                 let author: HTMLParagraphElement = <HTMLParagraphElement>document.createElement("p");
                 author.innerHTML = "Erstellt von: " + everyRecipe[i].author;
 
+                let deleteButton: HTMLButtonElement = <HTMLButtonElement>document.createElement("button");
+                deleteButton.classList.add("deleteButton");
+                deleteButton.innerHTML = "Aus Favoriten entfernen";
+
                 
                 spaceforsinglerecipe.appendChild(spaceforingradiants);
                 spaceforsinglerecipe.appendChild(spaceforinstruction);
                 spaceforsinglerecipe.appendChild(author);
+                spaceforsinglerecipe.appendChild(deleteButton);
                 recipeList.appendChild(spaceforsinglerecipe);
+
+                deleteButton.addEventListener("click", deleteRecipe);
+
+                async function deleteRecipe(): Promise<void> {
+                    let loggedUser: string = localStorage.getItem("username");
+                    let url: string = "https://davidqgissose2021.herokuapp.com/deleteFav";
+                    url = url + "?" + "title=" + everyRecipe[i].title + "&ingradiant1=" + everyRecipe[i].ingradiant1 + "&ingradiant2=" + everyRecipe[i].ingradiant2 + "&ingradiant3=" + everyRecipe[i].ingradiant3 + "&ingradiant4=" + everyRecipe[i].ingradiant4 + "&ingradiant5=" + everyRecipe[i].ingradiant5 + "&ingradiant6=" + everyRecipe[i].ingradiant6 + "&ingradiant7=" + everyRecipe[i].ingradiant7 + "&ingradiant8=" + everyRecipe[i].ingradiant8 + "&ingradiant9=" + everyRecipe[i].ingradiant9 + "&ingradiant10=" + everyRecipe[i].ingradiant10 + "&instruction=" + everyRecipe[i].instruction + "&author=" + everyRecipe[i].author + "&loggedUser=" + loggedUser;
+                    
+                    let response: Response = await fetch(url);
+                    let answer: string = await response.text();
+                    console.log(answer);
+                }
             }
         };
     }

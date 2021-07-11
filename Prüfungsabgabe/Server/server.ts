@@ -98,6 +98,11 @@ export namespace Rezepte {
                 let recipeList: Recipe[] = await loadFavSite(recipe);
                 _response.write(JSON.stringify(recipeList));
             }
+            else if (url.pathname == "/deleteFav") {
+                let recipe: Recipe = JSON.parse(jsonString);
+                let mongoResponse: string = await deleteFav(recipe);
+                _response.write(mongoResponse);
+            }
             else if (url.pathname == "/saveRecipe") {
                 let recipe: Recipe = JSON.parse(jsonString);
                 let mongoResponse: string = await saveRecipe(recipe);
@@ -110,6 +115,12 @@ export namespace Rezepte {
             }
             _response.end();
 
+        }
+
+        function deleteFav(_recipe: Recipe): string {
+            favList.deleteOne(_recipe);
+            let serverResponse: string = "Rezept wurde aus Favoriten entfernt.";
+            return serverResponse;
         }
 
         async function loadFavSite(_recipe: Recipe): Promise<Recipe[]> {
@@ -130,7 +141,7 @@ export namespace Rezepte {
 
 
 
-        async function saveRecipe(_recipe: Recipe): Promise<string> {
+        function saveRecipe(_recipe: Recipe): string {
             
             recipeList.insertOne(_recipe);
             let serverResponse: string = "Rezept wurde erstellt.";
