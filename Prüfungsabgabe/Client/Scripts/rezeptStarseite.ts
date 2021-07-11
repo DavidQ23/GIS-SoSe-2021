@@ -88,20 +88,20 @@ namespace Rezepte {
                 spaceforsinglerecipe.appendChild(instruction);
                 allRecipes.appendChild(spaceforsinglerecipe);
 
-                let addfavouriteButton: HTMLButtonElement = <HTMLButtonElement>document.createElement("button");
+                /* let addfavouriteButton: HTMLButtonElement = <HTMLButtonElement>document.createElement("button");
                 addfavouriteButton.innerHTML = "Favorisieren";
                 spaceforfavouriteButton.appendChild(addfavouriteButton);
-                addfavouriteButton.addEventListener("click", addFavourite);
+                addfavouriteButton.addEventListener("click", addFavourite); */
             }
 
-            async function addFavourite(): Promise<void> {
+            /* async function addFavourite(): Promise<void> {
                 let url: string = "https://davidqgissose2021.herokuapp.com/addfavourite";
                 console.log(url);
 
                 let response: Response = await fetch(url);
                 let answer: string = await response.text();
                 console.log(answer);
-            }
+            } */
 
 
 
