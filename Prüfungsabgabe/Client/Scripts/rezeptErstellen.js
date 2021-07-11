@@ -97,7 +97,7 @@ var Rezepte;
                 let author = document.createElement("p");
                 author.innerHTML = "Erstellt von: " + everyRecipe[i].author;
                 let deleteButton = document.createElement("button");
-                deleteButton.innerHTML = "Rezept bearbeiten";
+                deleteButton.innerHTML = "Rezept entfernen";
                 deleteButton.classList.add("deleteButton");
                 spaceforsingleRecipe.appendChild(spaceforingradiants);
                 spaceforsingleRecipe.appendChild(spaceforinstruction);

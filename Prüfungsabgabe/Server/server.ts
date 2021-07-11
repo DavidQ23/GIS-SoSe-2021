@@ -41,6 +41,7 @@ export namespace Rezepte {
         favList = mongoClient.db("Recipesite").collection("favList");
         recipeList = mongoClient.db("Recipesite").collection("Recipes");
     }
+    
     let mongoURL: string = "mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
     console.log("Starting server");
@@ -86,7 +87,7 @@ export namespace Rezepte {
 
             else if (url.pathname == "/buildsite") {
                 let recipeList: Recipe[] = await loadSite();
-                _response.write(JSON.stringify(recipeList));
+                _response.write(JSON.stringify(recipeList));                    //Json in String
             }
             else if (url.pathname == "/addfavourite") {
                 let favouredRecipe: Recipe = JSON.parse(jsonString);
@@ -115,8 +116,8 @@ export namespace Rezepte {
             }
             else if (url.pathname == "/deleteRecipe") {
                 let recipe: Recipe = JSON.parse(jsonString);
-                let recipeList: string = await deleteRecipe(recipe);
-                _response.write(recipeList);
+                let mongoResponse: string = await deleteRecipe(recipe);
+                _response.write(mongoResponse);
             }
             _response.end();
 

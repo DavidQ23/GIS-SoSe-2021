@@ -132,7 +132,7 @@ namespace Rezepte {
                 author.innerHTML = "Erstellt von: " + everyRecipe[i].author;
 
                 let deleteButton: HTMLButtonElement = <HTMLButtonElement>document.createElement("button");
-                deleteButton.innerHTML = "Rezept bearbeiten";
+                deleteButton.innerHTML = "Rezept entfernen";
                 deleteButton.classList.add("deleteButton");
 
 

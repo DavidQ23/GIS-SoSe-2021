@@ -53,7 +53,7 @@ var Rezepte;
             }
             else if (url.pathname == "/buildsite") {
                 let recipeList = await loadSite();
-                _response.write(JSON.stringify(recipeList));
+                _response.write(JSON.stringify(recipeList)); //Json in String
             }
             else if (url.pathname == "/addfavourite") {
                 let favouredRecipe = JSON.parse(jsonString);
@@ -82,8 +82,8 @@ var Rezepte;
             }
             else if (url.pathname == "/deleteRecipe") {
                 let recipe = JSON.parse(jsonString);
-                let recipeList = await deleteRecipe(recipe);
-                _response.write(recipeList);
+                let mongoResponse = await deleteRecipe(recipe);
+                _response.write(mongoResponse);
             }
             _response.end();
         }
