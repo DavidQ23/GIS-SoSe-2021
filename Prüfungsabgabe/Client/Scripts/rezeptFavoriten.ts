@@ -21,7 +21,9 @@ namespace Rezepte {
     if (document.querySelector("title").getAttribute("id") == "favouriteRecipes") {
         window.onload = async function loadingSite (): Promise<void> {
             
+            let loggedUser: string = localStorage.getItem("username");
             let url: string = "https://davidqgissose2021.herokuapp.com/loadFavourites";
+            url = url + "?author=" + loggedUser;
             console.log(url);
 
             let response: Response = await fetch(url);
@@ -114,13 +116,13 @@ namespace Rezepte {
 
                 let author: HTMLParagraphElement = <HTMLParagraphElement>document.createElement("p");
                 author.innerHTML = "Erstellt von: " + everyRecipe[i].author;
-                
+
                 
                 spaceforsinglerecipe.appendChild(spaceforingradiants);
                 spaceforsinglerecipe.appendChild(spaceforinstruction);
                 spaceforsinglerecipe.appendChild(author);
                 recipeList.appendChild(spaceforsinglerecipe);
             }
-        }
+        };
     }
 }

@@ -21,10 +21,11 @@ namespace Rezepte {
     saveButton.addEventListener("click", saveRecipe);
 
     async function saveRecipe(): Promise<void> {
-        
+        let formData: FormData = new FormData(document.forms[0]);
         let url: string = "https://davidqgissose2021.herokuapp.com/saveRecipe";
+        let query: URLSearchParams = new URLSearchParams(<any>formData);
         let loggedUser: string = localStorage.getItem("username");
-        url =  url + "?author=" + loggedUser;
+        url = url + "?" + query.toString() + "&author=" + loggedUser;
         console.log(url);
 
         let response: Response = await fetch(url);
@@ -35,9 +36,11 @@ namespace Rezepte {
 
     if (document.querySelector("title").getAttribute("id") == "createRecipe") {
         window.onload = async function buildSite(): Promise<void> {
+            let loggedUser: string = localStorage.getItem("username");
             let url: string = "https://davidqgissose2021.herokuapp.com/myRecipeSite";
+            url = url + "?author=" + loggedUser;
             console.log(url);
-
+            
             let response: Response = await fetch(url);
             let answer: string = await response.text();
             console.log(answer);

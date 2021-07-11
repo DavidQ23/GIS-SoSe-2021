@@ -4,7 +4,9 @@ var Rezepte;
     let recipeList = document.getElementById("savedRecipelist");
     if (document.querySelector("title").getAttribute("id") == "favouriteRecipes") {
         window.onload = async function loadingSite() {
+            let loggedUser = localStorage.getItem("username");
             let url = "https://davidqgissose2021.herokuapp.com/loadFavourites";
+            url = url + "?author=" + loggedUser;
             console.log(url);
             let response = await fetch(url);
             let answer = await response.text();

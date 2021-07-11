@@ -6,9 +6,11 @@ var Rezepte;
     let saveButton = document.getElementById("saveRecipe");
     saveButton.addEventListener("click", saveRecipe);
     async function saveRecipe() {
+        let formData = new FormData(document.forms[0]);
         let url = "https://davidqgissose2021.herokuapp.com/saveRecipe";
+        let query = new URLSearchParams(formData);
         let loggedUser = localStorage.getItem("username");
-        url = url + "?author=" + loggedUser;
+        url = url + "?" + query.toString() + "&author=" + loggedUser;
         console.log(url);
         let response = await fetch(url);
         let answer = await response.text();
@@ -17,7 +19,9 @@ var Rezepte;
     }
     if (document.querySelector("title").getAttribute("id") == "createRecipe") {
         window.onload = async function buildSite() {
+            let loggedUser = localStorage.getItem("username");
             let url = "https://davidqgissose2021.herokuapp.com/myRecipeSite";
+            url = url + "?author=" + loggedUser;
             console.log(url);
             let response = await fetch(url);
             let answer = await response.text();

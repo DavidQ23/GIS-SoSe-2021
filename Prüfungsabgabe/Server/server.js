@@ -7,12 +7,23 @@ const Mongo = require("mongodb");
 var Rezepte;
 (function (Rezepte) {
     let userlist;
+    let favList;
+    let recipeList;
+    async function connectWithDB(_url) {
+        let options = { useNewUrlParser: true, useUnifiedTopology: true };
+        let mongoClient = new Mongo.MongoClient(_url, options);
+        await mongoClient.connect();
+        userlist = mongoClient.db("Recipesite").collection("User");
+        favList = mongoClient.db("Recipesite").collection("favList");
+        recipeList = mongoClient.db("Recipesite").collection("Recipes");
+    }
     let mongoURL = "mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
         port = 8100;
     serverStart(port);
+    connectWithDB(mongoURL);
     function serverStart(_port) {
         let server = Http.createServer();
         server.addListener("request", handleRequest);
@@ -32,76 +43,58 @@ var Rezepte;
             console.log(jsonString);
             if (url.pathname == "/registration") {
                 let user = JSON.parse(jsonString); //Json Objekt
-                let mongoResponse = await registrateUser(mongoURL, user);
+                let mongoResponse = await registrateUser(user);
                 _response.write(mongoResponse);
             }
             else if (url.pathname == "/login") {
                 let user = JSON.parse(jsonString);
-                let mongoResponse = await loginUser(mongoURL, user);
+                let mongoResponse = await loginUser(user);
                 _response.write(mongoResponse);
             }
             else if (url.pathname == "/buildsite") {
-                let recipeList = await loadSite(mongoURL);
+                let recipeList = await loadSite();
                 _response.write(JSON.stringify(recipeList));
             }
             else if (url.pathname == "/addfavourite") {
                 let favouredRecipe = JSON.parse(jsonString);
-                let mongoResponse = await favourRecipe(mongoURL, favouredRecipe);
+                let mongoResponse = await favourRecipe(favouredRecipe);
                 _response.write(mongoResponse);
             }
             else if (url.pathname == "/loadFavourites") {
-                let recipeList = await loadFavSite(mongoURL);
+                let recipe = JSON.parse(jsonString);
+                let recipeList = await loadFavSite(recipe);
                 _response.write(JSON.stringify(recipeList));
             }
             else if (url.pathname == "/saveRecipe") {
                 let recipe = JSON.parse(jsonString);
-                let mongoResponse = await saveRecipe(mongoURL, recipe);
+                let mongoResponse = await saveRecipe(recipe);
                 _response.write(mongoResponse);
             }
             else if (url.pathname == "/myRecipeSite") {
                 let recipe = JSON.parse(jsonString);
-                let recipeList = await loadmyRecipesite(mongoURL, recipe);
+                let recipeList = await loadmyRecipesite(recipe);
                 _response.write(JSON.stringify(recipeList));
             }
             _response.end();
         }
-        async function loadFavSite(_url) {
-            let options = { useNewUrlParser: true, useUnifiedTopology: true };
-            let mongoClient = new Mongo.MongoClient(_url, options);
-            await mongoClient.connect();
-            let favList = mongoClient.db("Recipesite").collection("favList");
-            console.log("Database connected", favList != undefined);
-            let cursor = favList.find();
+        async function loadFavSite(_recipe) {
+            let loggedUser = _recipe.author;
+            let cursor = favList.find({ author: loggedUser });
             let result = await cursor.toArray();
             return result;
         }
-        async function loadmyRecipesite(_url, _recipe) {
-            let options = { useNewUrlParser: true, useUnifiedTopology: true };
-            let mongoClient = new Mongo.MongoClient(_url, options);
-            await mongoClient.connect();
-            let recipeList = mongoClient.db("Recipesite").collection("Recipes");
-            console.log("Database connected", recipeList != undefined);
+        async function loadmyRecipesite(_recipe) {
             let loggedUser = _recipe.author;
             let cursor = recipeList.find({ author: loggedUser });
             let result = await cursor.toArray();
             return result;
         }
-        async function saveRecipe(_url, _recipe) {
-            let options = { useNewUrlParser: true, useUnifiedTopology: true };
-            let mongoClient = new Mongo.MongoClient(_url, options);
-            await mongoClient.connect();
-            let recipeList = mongoClient.db("Recipesite").collection("Recipes");
-            console.log("Database connected", recipeList != undefined);
+        async function saveRecipe(_recipe) {
             recipeList.insertOne(_recipe);
             let serverResponse = "Rezept wurde erstellt.";
             return serverResponse;
         }
-        async function loginUser(_url, _user) {
-            let options = { useNewUrlParser: true, useUnifiedTopology: true };
-            let mongoClient = new Mongo.MongoClient(_url, options);
-            await mongoClient.connect();
-            userlist = mongoClient.db("Recipesite").collection("User");
-            console.log("Database connected", userlist != undefined);
+        async function loginUser(_user) {
             if (_user.username != "" && _user.password != "") {
                 let cursor = userlist.find();
                 let allUser = await cursor.toArray();
@@ -124,22 +117,12 @@ var Rezepte;
             response = "Nutzername wurde nicht gefunden.";
             return response;
         }
-        async function favourRecipe(_url, _recipe) {
-            let options = { useNewUrlParser: true, useUnifiedTopology: true };
-            let mongoClient = new Mongo.MongoClient(_url, options);
-            await mongoClient.connect();
-            let favList = mongoClient.db("Recipesite").collection("favList");
-            console.log("Database connected", favList != undefined);
+        async function favourRecipe(_recipe) {
             favList.insertOne(_recipe);
             let serverresponse = "Erfolgreich hinzugefügt!";
             return serverresponse;
         }
-        async function registrateUser(_url, _user) {
-            let options = { useNewUrlParser: true, useUnifiedTopology: true };
-            let mongoClient = new Mongo.MongoClient(_url, options);
-            await mongoClient.connect();
-            userlist = mongoClient.db("Recipesite").collection("User"); //neue Collection in Variable
-            console.log("Database connected", userlist != undefined);
+        async function registrateUser(_user) {
             if (_user.username != "" && _user.password != "") {
                 let cursor = userlist.find();
                 let allUser = await cursor.toArray();
@@ -166,12 +149,7 @@ var Rezepte;
             response = _user.username;
             return response;
         }
-        async function loadSite(_url) {
-            let options = { useNewUrlParser: true, useUnifiedTopology: true };
-            let mongoClient = new Mongo.MongoClient(_url, options);
-            await mongoClient.connect();
-            let recipeList = mongoClient.db("Recipesite").collection("Recipes");
-            console.log("Database connected", recipeList != undefined);
+        async function loadSite() {
             let cursor = recipeList.find();
             let result = await cursor.toArray();
             return result;
