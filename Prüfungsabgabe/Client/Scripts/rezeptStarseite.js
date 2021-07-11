@@ -87,6 +87,7 @@ var Rezepte;
                 let addfavouriteButton = document.createElement("button");
                 addfavouriteButton.innerHTML = "Favorisieren";
                 spaceforfavouriteButton.appendChild(addfavouriteButton);
+                allRecipes.appendChild(spaceforfavouriteButton);
                 addfavouriteButton.addEventListener("click", addFavourite);
             }
             async function addFavourite() {

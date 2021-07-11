@@ -2,7 +2,7 @@
 var Rezepte;
 (function (Rezepte) {
     let newRecipeForm = document.getElementById("newRecipeForm");
-    let allRecipe = document.getElementById("myRecipeList");
+    let allRecipe = document.getElementById("myRecipelist");
     let saveButton = document.getElementById("saveRecipe");
     saveButton.addEventListener("click", saveRecipe);
     async function saveRecipe() {
@@ -25,13 +25,13 @@ var Rezepte;
             console.log(answer);
             let everyRecipe = JSON.parse(answer);
             for (let i = 0; i < everyRecipe.length; i++) {
-                let spacesingelRecipe = document.createElement("div");
+                let spaceforsingleRecipe = document.createElement("div");
                 let spaceforingradiants = document.createElement("div");
                 let spaceforinstruction = document.createElement("div");
                 let title = document.createElement("p");
                 title.innerHTML = everyRecipe[i].title;
                 title.classList.add("headline");
-                spacesingelRecipe.appendChild(title);
+                spaceforsingleRecipe.appendChild(title);
                 let ingradiantheader = document.createElement("p");
                 ingradiantheader.innerHTML = "Zutaten:";
                 spaceforingradiants.appendChild(ingradiantheader);
@@ -93,10 +93,10 @@ var Rezepte;
                 spaceforinstruction.appendChild(instruction);
                 let author = document.createElement("p");
                 author.innerHTML = "Erstellt von: " + everyRecipe[i].author;
-                spacesingelRecipe.appendChild(spaceforingradiants);
-                spacesingelRecipe.appendChild(spaceforinstruction);
-                spacesingelRecipe.appendChild(author);
-                allRecipe.appendChild(spacesingelRecipe);
+                spaceforsingleRecipe.appendChild(spaceforingradiants);
+                spaceforsingleRecipe.appendChild(spaceforinstruction);
+                spaceforsingleRecipe.appendChild(author);
+                allRecipe.appendChild(spaceforsingleRecipe);
             }
         };
     }

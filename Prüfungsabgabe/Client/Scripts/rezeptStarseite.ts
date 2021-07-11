@@ -124,6 +124,7 @@ namespace Rezepte {
                 let addfavouriteButton: HTMLButtonElement = <HTMLButtonElement>document.createElement("button");
                 addfavouriteButton.innerHTML = "Favorisieren";
                 spaceforfavouriteButton.appendChild(addfavouriteButton);
+                allRecipes.appendChild(spaceforfavouriteButton);
                 addfavouriteButton.addEventListener("click", addFavourite);
             }
 

@@ -16,7 +16,7 @@ namespace Rezepte {
     }
 
     let newRecipeForm: HTMLFormElement = <HTMLFormElement>document.getElementById("newRecipeForm");
-    let allRecipe: HTMLDivElement = <HTMLDivElement>document.getElementById("myRecipeList");
+    let allRecipe: HTMLDivElement = <HTMLDivElement>document.getElementById("myRecipelist");
     let saveButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("saveRecipe");
     saveButton.addEventListener("click", saveRecipe);
 
@@ -45,14 +45,14 @@ namespace Rezepte {
             let everyRecipe: Recipe[] = JSON.parse(answer);
 
             for (let i: number = 0; i < everyRecipe.length; i++) {
-                let spacesingelRecipe: HTMLDivElement = <HTMLDivElement>document.createElement("div");
+                let spaceforsingleRecipe: HTMLDivElement = <HTMLDivElement>document.createElement("div");
                 let spaceforingradiants: HTMLDivElement = <HTMLDivElement>document.createElement("div");
                 let spaceforinstruction: HTMLDivElement = <HTMLDivElement>document.createElement("div");
 
                 let title: HTMLParagraphElement = <HTMLParagraphElement>document.createElement("p");
                 title.innerHTML = everyRecipe[i].title;
                 title.classList.add("headline");
-                spacesingelRecipe.appendChild(title);
+                spaceforsingleRecipe.appendChild(title);
 
                 let ingradiantheader: HTMLParagraphElement = <HTMLParagraphElement>document.createElement("p");
                 ingradiantheader.innerHTML = "Zutaten:";
@@ -129,10 +129,10 @@ namespace Rezepte {
                 author.innerHTML = "Erstellt von: " + everyRecipe[i].author;
 
                 
-                spacesingelRecipe.appendChild(spaceforingradiants);
-                spacesingelRecipe.appendChild(spaceforinstruction);
-                spacesingelRecipe.appendChild(author);
-                allRecipe.appendChild(spacesingelRecipe);
+                spaceforsingleRecipe.appendChild(spaceforingradiants);
+                spaceforsingleRecipe.appendChild(spaceforinstruction);
+                spaceforsingleRecipe.appendChild(author);
+                allRecipe.appendChild(spaceforsingleRecipe);
 
             }
 

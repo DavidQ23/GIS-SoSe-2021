@@ -44,11 +44,11 @@ var Rezepte;
                 let recipeList = await loadSite(mongoURL);
                 _response.write(JSON.stringify(recipeList));
             }
-            /* else if (url.pathname == "/addfavourite") {
-                let favouredRecipe: Recipe = JSON.parse(jsonString);
-                let mongoResponse: string = await favourRecipe(mongoURL, favouredRecipe);
+            else if (url.pathname == "/addfavourite") {
+                let favouredRecipe = JSON.parse(jsonString);
+                let mongoResponse = await favourRecipe(mongoURL, favouredRecipe);
                 _response.write(mongoResponse);
-            } */
+            }
             else if (url.pathname == "/saveRecipe") {
                 let recipe = JSON.parse(jsonString);
                 let mongoResponse = await saveRecipe(mongoURL, recipe);
@@ -67,7 +67,8 @@ var Rezepte;
             await mongoClient.connect();
             let recipeList = mongoClient.db("Recipesite").collection("Recipes");
             console.log("Database connected", recipeList != undefined);
-            let cursor = recipeList.find({ "author": _recipe.author });
+            let loggedUser = _recipe.author;
+            let cursor = recipeList.find({ author: loggedUser });
             let result = await cursor.toArray();
             return result;
         }
@@ -109,14 +110,17 @@ var Rezepte;
             response = "Nutzername wurde nicht gefunden.";
             return response;
         }
-        /* async function favourRecipe(_url: string, _recipe: Recipe): Promise<string> {
-            let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
-            let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+        async function favourRecipe(_url, _recipe) {
+            let options = { useNewUrlParser: true, useUnifiedTopology: true };
+            let mongoClient = new Mongo.MongoClient(_url, options);
             await mongoClient.connect();
-            let recipeList: Mongo.Collection = mongoClient.db("Recipesite").collection("Recipes");
-            console.log("Database connected", recipeList != undefined);
-
-        } */
+            let favList = mongoClient.db("Recipesite").collection("favList");
+            console.log("Database connected", favList != undefined);
+            let selectedRecipe = _recipe;
+            favList.insertOne(selectedRecipe);
+            let serverresponse = "Erfolgreich hinzugefügt!";
+            return serverresponse;
+        }
         async function registrateUser(_url, _user) {
             let options = { useNewUrlParser: true, useUnifiedTopology: true };
             let mongoClient = new Mongo.MongoClient(_url, options);
