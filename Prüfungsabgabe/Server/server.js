@@ -49,6 +49,10 @@ var Rezepte;
                 let mongoResponse = await favourRecipe(mongoURL, favouredRecipe);
                 _response.write(mongoResponse);
             }
+            else if (url.pathname == "/loadFavourites") {
+                let recipeList = await loadFavSite(mongoURL);
+                _response.write(JSON.stringify(recipeList));
+            }
             else if (url.pathname == "/saveRecipe") {
                 let recipe = JSON.parse(jsonString);
                 let mongoResponse = await saveRecipe(mongoURL, recipe);
@@ -60,6 +64,16 @@ var Rezepte;
                 _response.write(JSON.stringify(recipeList));
             }
             _response.end();
+        }
+        async function loadFavSite(_url) {
+            let options = { useNewUrlParser: true, useUnifiedTopology: true };
+            let mongoClient = new Mongo.MongoClient(_url, options);
+            await mongoClient.connect();
+            let favList = mongoClient.db("Recipesite").collection("favList");
+            console.log("Database connected", favList != undefined);
+            let cursor = favList.find();
+            let result = await cursor.toArray();
+            return result;
         }
         async function loadmyRecipesite(_url, _recipe) {
             let options = { useNewUrlParser: true, useUnifiedTopology: true };

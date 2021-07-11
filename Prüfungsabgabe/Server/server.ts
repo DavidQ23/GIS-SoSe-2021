@@ -79,6 +79,10 @@ export namespace Rezepte {
                 let mongoResponse: string = await favourRecipe(mongoURL, favouredRecipe);
                 _response.write(mongoResponse);
             }
+            else if (url.pathname == "/loadFavourites") {
+                let recipeList: Recipe[] = await loadFavSite(mongoURL);
+                _response.write(JSON.stringify(recipeList));
+            }
             else if (url.pathname == "/saveRecipe") {
                 let recipe: Recipe = JSON.parse(jsonString);
                 let mongoResponse: string = await saveRecipe(mongoURL, recipe);
@@ -90,6 +94,19 @@ export namespace Rezepte {
                 _response.write(JSON.stringify(recipeList));
             }
             _response.end();
+
+        }
+
+        async function loadFavSite(_url: string): Promise<Recipe[]> {
+            let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+            let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+            await mongoClient.connect();
+            let favList: Mongo.Collection = mongoClient.db("Recipesite").collection("favList");
+            console.log("Database connected", favList != undefined);
+
+            let cursor: Mongo.Cursor = favList.find();
+            let result: Recipe[] = await cursor.toArray();
+            return result;
 
         }
 
