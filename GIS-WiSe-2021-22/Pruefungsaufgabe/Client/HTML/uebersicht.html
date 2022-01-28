@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Übersichtsseite</title>
+    <link rel="stylesheet" href="../CSS/navbar.css">
+    <link rel="stylesheet" href="../CSS/uebersicht.css">
+    <script src="../Scripts/scriptUebersicht.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <nav id="mainNav">
+                <ul>
+                    <li><a class="active" href="uebersicht.html">Übersicht</a></li>
+                    <li><a href="anlegen.html">Gefriergut hinzufügen</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="displayListe">
+            <table id="inhaltstabelle">
+                <tr id="tabellenName">
+                    <th>Name des Gefrierguts</th>
+                    <th>Ablaufdatum</th>
+                </tr>
+
+                <tr class="tabellenzeile">
+                    <td class="nameTabelle">Kochschinken</td>
+                    <td class="ablaufTabelle">23.01.2022</td>
+                    <td class="detailTabelle"><a href="detail.html">Detailansicht</a></td>
+                </tr>
+                <tr>
+                    <td>Rotwein</td>
+                    <td>05.06.2035</td>
+                    <td><a href="detail.html">Detailansicht</a></td>
+                </tr>
+                <tr>
+                    <td>Parmesan</td>
+                    <td>12.04.2022</td>
+                    <td><a href="detail.html">Detailansicht</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
