@@ -24,7 +24,7 @@ export namespace Gefrierschrank {
         gefriergutliste = mongoClient.db("Gefrierschrank").collection("Gefriergut");
     }
 
-    let mongoURL: string = "";
+    let mongoURL: string = "mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 
     // Portzuweisung falls keiner vorhanden

@@ -6,7 +6,7 @@ namespace Gefrierschrank {
     //Zugriff auf Form Elemente
     let newGefriergutForm: HTMLFormElement = <HTMLFormElement>document.getElementById("newGefriergut");
     let saveButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("saveButton");
-    saveButton.addEventListener("cick", saveGefriergut);
+    saveButton.addEventListener("click", saveGefriergut);
 
     async function saveGefriergut(): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);

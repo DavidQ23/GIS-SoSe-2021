@@ -14,7 +14,7 @@ var Gefrierschrank;
         await mongoClient.connect();
         gefriergutliste = mongoClient.db("Gefrierschrank").collection("Gefriergut");
     }
-    let mongoURL = "";
+    let mongoURL = "mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     // Portzuweisung falls keiner vorhanden
     console.log("Starting Server");
     let port = Number(process.env.PORT);
