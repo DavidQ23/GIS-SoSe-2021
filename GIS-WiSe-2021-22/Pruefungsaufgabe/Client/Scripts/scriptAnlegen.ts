@@ -10,7 +10,7 @@ namespace Gefrierschrank {
 
     async function saveGefriergut(): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);
-        let url: string = "https://davidqgissose2021.herokuapp.com/saveGefriergut";
+        let url: string = "http://127.0.0.1:5500/GIS-WiSe-2021-22/Pruefungsaufgabe/Client/HTML/anlegen.html/saveGefriergut";
         let query: URLSearchParams = new URLSearchParams(<any>formData);
 
         //Eingaben an die URL zur Weiterverarbeitung anhängen

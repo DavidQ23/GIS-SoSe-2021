@@ -19,7 +19,7 @@ var Gefrierschrank;
     console.log("Starting Server");
     let port = Number(process.env.PORT);
     if (!port)
-        port = 8100;
+        port = 5500;
     //Funktion für Serverstarten
     function serverStart(_port) {
         let server = Http.createServer();

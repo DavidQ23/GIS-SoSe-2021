@@ -6,12 +6,14 @@ var Gefrierschrank;
         let url = "https://davidqgissose2021.herokuapp.com/allGefriergut";
         let response = await fetch(url);
         let answer = await response.text();
-        let everyGefriergut = JSON.parse(answer);
-        let displayTabelle = document.getElementById("displayListe");
-        let inhaltstabelle = document.getElementById("inhaltstabelle");
+        //let everyGefriergut: Gefriergut[] = JSON.parse(answer);
+        /* let displayTabelle: HTMLDivElement = <HTMLDivElement>document.getElementById("displayListe");
+        let inhaltstabelle: HTMLTableElement = <HTMLTableElement>document.getElementById("inhaltstabelle");
+        
         //Aufbau der Seite
-        for (let i = 0; i < everyGefriergut.length; i++) {
-        }
+        for (let i: number = 0; i < everyGefriergut.length; i++) {
+            
+        } */
     };
 })(Gefrierschrank || (Gefrierschrank = {}));
 //# sourceMappingURL=scriptUebersicht.js.map
