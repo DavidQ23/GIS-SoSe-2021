@@ -1,7 +1,6 @@
 import * as Http from "http";
 import * as Url from "url";
 import * as Mongo from "mongodb";
-import { url } from "inspector";
 
 export namespace Gefrierschrank {
 
@@ -62,13 +61,6 @@ export namespace Gefrierschrank {
                 let mongoResponse: string = await saveGefriergut(gefriergut);
                 _response.write(mongoResponse);
             }
-            
-            
-            
-            
-            
-            
-            
             
             _response.end();
         }

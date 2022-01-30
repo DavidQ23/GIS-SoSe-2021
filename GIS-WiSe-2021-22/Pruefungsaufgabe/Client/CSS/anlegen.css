@@ -6,7 +6,12 @@
     width: 40%;
 }
 
-#hinzufuegen input {
+#hinzufuegen input, select{
     width: 80%;
     padding: 3px 2px 3px 2px;
 }
+
+select > option {
+    padding: 4px;
+}
+
