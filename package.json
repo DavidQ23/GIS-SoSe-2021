@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@types/mongodb": "^3.6.18",
-    "mongodb": "^3.6.9"
+    "mongodb": "^3.7.3"
   },
   "devDependencies": {
     "@types/node": "^15.12.1"

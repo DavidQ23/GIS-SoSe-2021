@@ -14,58 +14,42 @@ var Gefrierschrank;
         await mongoClient.connect();
         gefriergutliste = mongoClient.db("Gefrierschrank").collection("Gefriergut");
     }
-    let mongoURL = "mongodb+srv://Testuser:passwort@clusterdavid.066x0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-    // Portzuweisung falls keiner vorhanden
-    console.log("Starting Server");
+    let mongoURL = "mongodb+srv://Testuser:2lPp9jUUag8OsBAH@clusterdavid.066x0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     let port = Number(process.env.PORT);
     if (!port)
-        port = 5500;
-    //Funktion für Serverstarten
+        port = 8100;
     function serverStart(_port) {
         let server = Http.createServer();
         server.addListener("request", handleRequest);
         server.addListener("listening", handleListen);
+        server.listen(port);
     }
-    //Abruf der Funktionen    
     serverStart(port);
     connectWithDB(mongoURL);
+    console.log("Starting Server");
     function handleListen() {
         console.log("Listening");
     }
-    //Anfrage bearbeiten
     async function handleRequest(_request, _response) {
         console.log("I hear voices!");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
-            //erhaltene URL in String
-            let url = Url.parse(_request.url, true);
+            let url = Url.parse(_request.url, true); //-> assoziatives Array 
             let jsonString = JSON.stringify(url.query);
             console.log(jsonString);
-            // Serververarbeitung zum Speichern der formData
             if (url.pathname == "/saveGefriergut") {
                 let gefriergut = JSON.parse(jsonString);
                 let mongoResponse = await saveGefriergut(gefriergut);
                 _response.write(mongoResponse);
             }
-            if (url.pathname == "/allGefriergut") {
-                let gefriergutliste = await buildSite();
-                _response.write(JSON.stringify(gefriergutliste));
-            }
+            _response.end();
         }
-        //Funktion zum Speichern der FormData
         function saveGefriergut(_gefriergut) {
             gefriergutliste.insertOne(_gefriergut);
-            let serverResponse = "Gefriergut wurde hinzugefügt";
+            let serverResponse = "Gefriertgut wurde angelegt.";
             return serverResponse;
         }
-        //Funktion um Seite auf Übersicht darzustellen
-        async function buildSite() {
-            let cursor = gefriergutliste.find();
-            let result = await cursor.toArray();
-            return result;
-        }
-        _response.end();
     }
 })(Gefrierschrank = exports.Gefrierschrank || (exports.Gefrierschrank = {}));
 //# sourceMappingURL=server.js.map
