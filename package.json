@@ -11,7 +11,7 @@
     "@types/node": "^15.12.1"
   },
   "scripts": {
-    "start": "node GIS-WiSe-2021-22/Pruefungsabgabe/Server/server.js"
+    "start": "node /GIS-WiSe-2021-22/Pruefungsabgabe/Server/server.js"
   },
   "repository": {
     "type": "git",
